@@ -1,6 +1,7 @@
 package com.company.project.cases;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.company.project.DateOfBirth;
 import com.company.project.Gender;
@@ -29,6 +30,8 @@ public class WebPageTest extends UITestBase {
 
     @BeforeEach
     void beforeEach() {
+
+        Configuration.baseUrl= "https://demoqa.com";
 
         String firstName = faker.name().firstName(),
                 lastName = faker.name().lastName(),
