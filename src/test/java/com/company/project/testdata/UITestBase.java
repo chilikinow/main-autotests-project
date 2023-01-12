@@ -2,11 +2,13 @@ package com.company.project.testdata;
 
 import com.codeborne.selenide.Configuration;
 import com.company.project.helpers.Attach;
+import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+@Slf4j
 public class UITestBase {
 
     private static String selenideLocation;
@@ -24,6 +26,18 @@ public class UITestBase {
         Configuration.timeout = selenideConfig.getBrowserTimeout();
         Configuration.headless = selenideConfig.isBrowserHeadless();
         Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
+
+        log.info("{} {} {} {} {} {} {} {}",
+                selenideLocation,
+                Configuration.remote,
+        Configuration.browser,
+        Configuration.browserVersion,
+        Configuration.browserSize,
+        Configuration.timeout,
+        Configuration.headless,
+        Configuration.holdBrowserOpen
+
+                );
 
         if (selenideLocation.equals("remote")) {
 
