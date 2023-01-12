@@ -2,6 +2,7 @@ package com.company.project.testdata;
 
 import com.codeborne.selenide.Configuration;
 import com.company.project.helpers.Attach;
+import com.company.project.pages.TestBase;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 @Slf4j
-public class UITestBase {
+public class UITestBase extends TestBase {
 
     private static String selenideLocation;
 
