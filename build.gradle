@@ -35,7 +35,7 @@ dependencies {
             ,'io.rest-assured:rest-assured-common:5.0.1'
             ,'io.rest-assured:json-path:5.0.1'
             ,'io.rest-assured:xml-path:5.0.1'
-            ,'org.junit.jupiter:junit-jupiter:5.9.2'
+            ,'org.junit.jupiter:junit-jupiter:5.8.2'
             ,'org.assertj:assertj-core:3.11.1'
             ,'com.codeborne:selenide:6.11.0'
             ,'org.slf4j:slf4j-simple:2.0.6'
@@ -63,6 +63,10 @@ tasks.withType(Test) {
 
 tasks.withType(Copy).all {
     duplicatesStrategy 'exclude'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 task regression_test(type: Test) {

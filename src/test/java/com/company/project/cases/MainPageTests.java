@@ -2,6 +2,7 @@ package com.company.project.cases;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.company.project.testdata.UITestBase;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -18,7 +19,7 @@ import static org.openqa.selenium.By.linkText;
 @Slf4j
 @Tag("main_page")
 @DisplayName("main_page")
-public class MainPageTests {
+public class MainPageTests extends UITestBase {
 
     @BeforeEach
     void addListener() {

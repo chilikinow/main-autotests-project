@@ -27,18 +27,6 @@ public class UITestBase {
         Configuration.headless = selenideConfig.isBrowserHeadless();
         Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
 
-        log.info("{} {} {} {} {} {} {} {}",
-                selenideLocation,
-                Configuration.remote,
-        Configuration.browser,
-        Configuration.browserVersion,
-        Configuration.browserSize,
-        Configuration.timeout,
-        Configuration.headless,
-        Configuration.holdBrowserOpen
-
-                );
-
         if (selenideLocation.equals("remote")) {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
