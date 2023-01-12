@@ -14,8 +14,6 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        System.setProperty("selenide.location", "local");
-
         selenideLocation = System.getProperty("selenide.location");
 
         SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
@@ -25,6 +23,7 @@ public class UITestBase {
         Configuration.browserSize = selenideConfig.getBrowserSize();
         Configuration.timeout = selenideConfig.getBrowserTimeout();
         Configuration.headless = selenideConfig.isBrowserHeadless();
+        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
 
         if (selenideLocation.equals("remote")) {
 

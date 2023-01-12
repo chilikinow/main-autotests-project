@@ -8,7 +8,6 @@ import static org.aeonbits.owner.Config.*;
 public interface SelenideConfig extends Config {
 
     @Key("selenoid.url")
-    @DefaultValue("http://selenoid:4444/wd/hub")
     String getSelenoidUrl();
 
     @Key("browser.name")
@@ -27,5 +26,8 @@ public interface SelenideConfig extends Config {
 
     @Key("browser.headless")
     boolean isBrowserHeadless();
+
+    @Key("browser.hold.open")
+    boolean isHoldBrowserOpen();
 
 }
