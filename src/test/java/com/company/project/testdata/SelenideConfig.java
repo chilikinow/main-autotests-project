@@ -1,4 +1,4 @@
-package com.company.project.settings;
+package com.company.project.testdata;
 
 import org.aeonbits.owner.Config;
 import static org.aeonbits.owner.Config.*;
