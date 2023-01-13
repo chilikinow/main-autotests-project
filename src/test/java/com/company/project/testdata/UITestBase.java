@@ -26,7 +26,7 @@ public class UITestBase {
         Configuration.headless = Boolean.valueOf(System.getProperty("selenide.browser.headless", "false"));
         Configuration.holdBrowserOpen = Boolean.valueOf(System.getProperty("selenide.hold.browser.open", "false"));
 
-//        selenideLocation = System.getProperty("selenide.location");
+        selenideLocation = System.getProperty("selenide.location", "local");
 //
 //        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
 //        Configuration.remote = selenideConfig.getSelenoidUrl();
