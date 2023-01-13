@@ -18,26 +18,16 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        Configuration.remote = System.getProperty("selenoid.url");
-        Configuration.browser = System.getProperty("selenide.browser.name");
-        Configuration.browserVersion = System.getProperty("selenide.browser.version");
-        Configuration.browserSize = System.getProperty("selenide.browser.size");
-        Configuration.timeout = Long.valueOf(System.getProperty("selenide.browser.timeout", "10000"));
-        Configuration.headless = Boolean.valueOf(System.getProperty("selenide.browser.headless", "false"));
-        Configuration.holdBrowserOpen = Boolean.valueOf(System.getProperty("selenide.hold.browser.open", "false"));
+        selenideLocation = System.getProperty("selenide.location");
 
-        selenideLocation = System.getProperty("selenide.location", "local");
-//
-//        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
-//        Configuration.remote = selenideConfig.getSelenoidUrl();
-//        Configuration.browser = selenideConfig.getBrowserName();
-//        Configuration.browserVersion = selenideConfig.getBrowserVersion();
-//        Configuration.browserSize = selenideConfig.getBrowserSize();
-//        Configuration.timeout = selenideConfig.getBrowserTimeout();
-//        Configuration.headless = selenideConfig.isBrowserHeadless();
-//        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
-
-        Configuration.fileDownload = FOLDER;
+        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
+        Configuration.remote = selenideConfig.getSelenoidUrl();
+        Configuration.browser = selenideConfig.getBrowserName();
+        Configuration.browserVersion = selenideConfig.getBrowserVersion();
+        Configuration.browserSize = selenideConfig.getBrowserSize();
+        Configuration.timeout = selenideConfig.getBrowserTimeout();
+        Configuration.headless = selenideConfig.isBrowserHeadless();
+        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
 
         if (selenideLocation.equals("remote")) {
 
