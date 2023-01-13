@@ -8,6 +8,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static com.codeborne.selenide.FileDownloadMode.FOLDER;
+
 @Slf4j
 public class UITestBase {
 
@@ -16,16 +18,26 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        selenideLocation = System.getProperty("selenide.location");
+        Configuration.remote = System.getProperty("selenoid.url");
+        Configuration.browser = System.getProperty("selenide.browser.name");
+        Configuration.browserVersion = System.getProperty("selenide.browser.version");
+        Configuration.browserSize = System.getProperty("selenide.browser.size");
+        Configuration.timeout = Integer.valueOf(System.getProperty("selenide.browser.timeout"), 10000);
+        Configuration.headless = Boolean.valueOf(System.getProperty("selenide.browser.headless", "false"));
+        Configuration.holdBrowserOpen = Boolean.valueOf(System.getProperty("selenide.hold.browser.open", "false"));
 
-        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
-        Configuration.remote = selenideConfig.getSelenoidUrl();
-        Configuration.browser = selenideConfig.getBrowserName();
-        Configuration.browserVersion = selenideConfig.getBrowserVersion();
-        Configuration.browserSize = selenideConfig.getBrowserSize();
-        Configuration.timeout = selenideConfig.getBrowserTimeout();
-        Configuration.headless = selenideConfig.isBrowserHeadless();
-        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
+//        selenideLocation = System.getProperty("selenide.location");
+//
+//        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
+//        Configuration.remote = selenideConfig.getSelenoidUrl();
+//        Configuration.browser = selenideConfig.getBrowserName();
+//        Configuration.browserVersion = selenideConfig.getBrowserVersion();
+//        Configuration.browserSize = selenideConfig.getBrowserSize();
+//        Configuration.timeout = selenideConfig.getBrowserTimeout();
+//        Configuration.headless = selenideConfig.isBrowserHeadless();
+//        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
+
+        Configuration.fileDownload = FOLDER;
 
         if (selenideLocation.equals("remote")) {
 
