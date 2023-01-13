@@ -4,3 +4,4 @@
 /gradlew.bat
 /settings.gradle
 /build/
+/src/test/resources/notifications/telegram.json
