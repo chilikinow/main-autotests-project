@@ -22,7 +22,7 @@ public class UITestBase {
         Configuration.browser = System.getProperty("selenide.browser.name");
         Configuration.browserVersion = System.getProperty("selenide.browser.version");
         Configuration.browserSize = System.getProperty("selenide.browser.size");
-        Configuration.timeout = Integer.valueOf(System.getProperty("selenide.browser.timeout"), 10000);
+        Configuration.timeout = Long.valueOf(System.getProperty("selenide.browser.timeout", "10000"));
         Configuration.headless = Boolean.valueOf(System.getProperty("selenide.browser.headless", "false"));
         Configuration.holdBrowserOpen = Boolean.valueOf(System.getProperty("selenide.hold.browser.open", "false"));
 

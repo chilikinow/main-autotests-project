@@ -22,7 +22,7 @@ public interface SelenideConfig extends Config {
     String getBrowserSize();
 
     @Key("browser.timeout")
-    Integer getBrowserTimeout();
+    Long getBrowserTimeout();
 
     @Key("browser.headless")
     boolean isBrowserHeadless();
