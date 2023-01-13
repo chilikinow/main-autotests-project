@@ -29,6 +29,8 @@ public class UITestBase {
         Configuration.headless = selenideConfig.isBrowserHeadless();
         Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
 
+        Configuration.fileDownload = FOLDER;
+
         if (selenideLocation.equals("remote")) {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -37,7 +39,6 @@ public class UITestBase {
             Configuration.browserCapabilities = capabilities;
 
         }
-
     }
 
     @AfterEach
@@ -50,6 +51,4 @@ public class UITestBase {
             Attach.addVideo();
         }
     }
-
-
 }
