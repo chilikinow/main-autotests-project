@@ -32,18 +32,20 @@ dependencies {
 
     testImplementation(
             'org.slf4j:slf4j-simple:2.0.6'
-            ,'io.rest-assured:rest-assured:5.1.1'
+            ,'io.rest-assured:rest-assured:5.3.0'
             ,'io.rest-assured:rest-assured-common:5.0.1'
             ,'io.rest-assured:json-path:5.0.1'
             ,'io.rest-assured:xml-path:5.0.1'
             ,'org.junit.jupiter:junit-jupiter:5.9.2'
             ,'org.assertj:assertj-core:3.11.1'
-            ,'com.codeborne:selenide:6.11.0'
+            ,'com.codeborne:selenide:6.11.1'
             ,'org.selenide:selenide-selenoid:2.3.4'
             ,'io.qameta.allure:allure-selenide:2.19.0'
             ,'com.google.code.gson:gson:2.2.4'
             ,'org.aeonbits.owner:owner:1.0.12'
             ,'com.github.javafaker:javafaker:1.0.2'
+            ,'com.google.code.gson:gson:2.2.4'
+
     )
 
     testCompileOnly 'org.projectlombok:lombok:1.18.24'

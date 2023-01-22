@@ -1,8 +1,7 @@
-package com.company.project.cases;
+package com.company.project.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import com.company.project.testdata.UITestBase;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;

@@ -1,7 +1,9 @@
-package com.company.project.testdata;
+package com.company.project.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.company.project.helpers.Attach;
+import com.company.project.config.SelenideConfig;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +20,7 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        selenideLocation = System.getProperty("selenide.location");
+        selenideLocation = System.getProperty("config.location"); //todo поменять настройку в jenkins
 
         SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
         Configuration.remote = selenideConfig.getSelenoidUrl();
@@ -43,6 +45,8 @@ public class UITestBase {
 
     @AfterEach
     void afterEach(){
+
+        Selenide.closeWebDriver();
 
         if (selenideLocation.equals("remote")) {
             Attach.screenshotAs("Last screenshot");

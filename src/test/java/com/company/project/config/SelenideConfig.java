@@ -1,10 +1,10 @@
-package com.company.project.testdata;
+package com.company.project.config;
 
 import org.aeonbits.owner.Config;
 import static org.aeonbits.owner.Config.*;
 
-@Sources({"file:src/test/resources/selenide/${selenide.location}.properties",
-        "classpath:selenide/${selenide.location}.properties"})
+@Sources({"file:src/test/resources/config/${config.location}.properties",
+        "classpath:config/${config.location}.properties"})
 public interface SelenideConfig extends Config {
 
     @Key("selenoid.url")
