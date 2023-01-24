@@ -28,7 +28,7 @@ public class ReqresInTests {
         baseURI = "https://reqres.in";
     }
 
-    @ValueSource(ints = {1, 2, 3})
+    @ValueSource(ints = {1,2,3})
     @ParameterizedTest(name = "check all user attributes not null on page {0}")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)

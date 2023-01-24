@@ -19,7 +19,7 @@ import static org.openqa.selenium.By.linkText;
 @Slf4j
 @Tag("git_repo")
 @DisplayName("check git repo eroshenkoam/allure-example")
-public class MainPageTests extends UITestBase {
+public class CurrentGitRepoTests extends UITestBase {
 
     @ValueSource(ints = {76})
     @ParameterizedTest(name = "check issue exist on repo")
