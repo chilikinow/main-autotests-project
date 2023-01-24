@@ -19,7 +19,7 @@ import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-@Tag("api_reqres.in")
+@Tag("api_reqres_in")
 @DisplayName("check api https://reqres.in/")
 public class ReqresInTests {
 
@@ -107,12 +107,14 @@ public class ReqresInTests {
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkSingleUserNotFound(int id) {
+
         given()
                 .when()
                 .get("/api/users/" + id)
                 .then()
                 .log().status()
                 .statusCode(404);
+
     }
 
     @CsvFileSource(resources = "/resources.csv")
@@ -142,7 +144,7 @@ public class ReqresInTests {
     @Test
     @DisplayName("check user create successful")
     @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
+    @Severity(SeverityLevel.CRITICAL)
     void checkUserCreateSuccessful() {
 
         String name = "morpheus";

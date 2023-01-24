@@ -72,7 +72,7 @@ tasks.withType(Copy).all {
 task regression_test(type: Test) {
     useJUnitPlatform {
         includeTags("git_repo")
-        includeTags("api_reqres.in")
+        includeTags("api_reqres_in")
     }
 }
 
