@@ -1,13 +1,16 @@
-package com.company.project.tests;
+package com.company.project.tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.company.project.helpers.Attach;
 import com.company.project.config.SelenideConfig;
+import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.FileDownloadMode.FOLDER;
@@ -20,7 +23,7 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        selenideLocation = System.getProperty("config.location"); //todo поменять настройку в jenkins
+        selenideLocation = System.getProperty("selenide.location");
 
         SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
         Configuration.remote = selenideConfig.getSelenoidUrl();
@@ -33,7 +36,7 @@ public class UITestBase {
 
         Configuration.fileDownload = FOLDER;
 
-        if (selenideLocation.equals("remote")) {
+        if (selenideLocation != null && selenideLocation.equals("remote")) {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
@@ -41,6 +44,11 @@ public class UITestBase {
             Configuration.browserCapabilities = capabilities;
 
         }
+    }
+
+    @BeforeEach
+    void addListener() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach

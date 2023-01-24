@@ -1,16 +1,20 @@
 package com.company.project.tests.api;
 
-import com.company.project.model.list.ListUsers;
-import com.company.project.model.list.SingleUser;
+import com.company.project.model.*;
+import com.google.gson.JsonObject;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import static org.hamcrest.Matchers.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -25,13 +29,13 @@ public class ReqresInTests {
         baseURI = "https://reqres.in";
     }
 
-    @ValueSource(ints = {1,2,3})
+    @ValueSource(ints = {1, 2, 3})
     @ParameterizedTest(name = "check all user attributes not null on page {0}")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkAllUserAttributesNotNullTest(int pageNumber) {
 
-        ListUsers listUsers = given()
+        List<User> userList = given()
                                     .queryParam("page", pageNumber)
                                     .when()
                                     .get("/api/users")
@@ -40,11 +44,11 @@ public class ReqresInTests {
                                     .statusCode(200)
                                     .extract()
                                     .body()
-                                    .as(ListUsers.class);
+                                    .as(ListUsers.class).getUsersList();
 
         assertAll("all users have attributes (email, first name, last name): ",
 
-                listUsers.getData().stream().map(user -> () -> {
+                userList.stream().map(user -> () -> {
 
                     assertAll(
 
@@ -52,7 +56,7 @@ public class ReqresInTests {
                                     .withFailMessage(user.getId() + ", haven't email.")
                                     .isTrue(),
 
-                            () -> assertThat( user.getFirstName()!= null)
+                            () -> assertThat(user.getFirstName() != null)
                                     .withFailMessage(user.getId() + ", haven't first name.")
                                     .isTrue(),
 
@@ -71,30 +75,90 @@ public class ReqresInTests {
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteUserTest(Long id, String email, String firstName, String lastName) {
 
-        SingleUser singleUser = given()
+        User user = given()
+                            .when()
+                            .get("/api/users/" + id)
+                            .then()
+                            .log().status()
+                            .statusCode(200)
+                            .extract()
+                            .body()
+                            .as(SingleUser.class)
+                            .getUser();
+
+        assertAll("it's same user what expected on id " + id + " : ",
+
+                () -> assertThat(user.getEmail())
+                        .withFailMessage(user.getEmail() + ", expected email: " + email)
+                        .isEqualTo(email),
+
+                () -> assertThat(user.getFirstName())
+                        .withFailMessage(user.getFirstName() + ", expected first name: " + firstName)
+                        .isEqualTo(firstName),
+
+                () -> assertThat(user.getLastName())
+                        .withFailMessage(user.getLastName() + ", expected last name: " + lastName)
+                        .isEqualTo(lastName)
+
+        );
+    }
+
+    @ValueSource(ints = {997, 998, 999})
+    @ParameterizedTest(name = "check user id {0}, not exist")
+    @Owner("chilikinow@gmail.com")
+    @Severity(SeverityLevel.NORMAL)
+    void checkSingleUserNotFound(int id) {
+        given()
                 .when()
                 .get("/api/users/" + id)
                 .then()
                 .log().status()
-                .statusCode(200)
-                .extract()
-                .body()
-                .as(SingleUser.class);
+                .statusCode(404);
+    }
 
-        assertAll("it's same user what expected on id " + id + " : ",
+    @CsvFileSource(resources = "/resources.csv")
+    @ParameterizedTest(name = "check name {0} exist on resource page")
+    @Owner("chilikinow@gmail.com")
+    @Severity(SeverityLevel.NORMAL)
+    void checkNameExistOnResourcePageTest(String name) {
 
-                () -> assertThat(singleUser.getData().getEmail())
-                        .withFailMessage(singleUser.getData().getEmail() + ", expected email: " + email)
-                        .isEqualTo(email),
+        List<Resource> resourcesList = given()
+                                            .when()
+                                            .get("/api/unknown")
+                                            .then()
+                                            .log().status()
+                                            .statusCode(200)
+                                            .extract()
+                                            .body()
+                                            .as(ListResources.class)
+                                            .getResourcesList();
 
-                () -> assertThat(singleUser.getData().getFirstName())
-                        .withFailMessage(singleUser.getData().getFirstName() + ", expected first name: " + firstName)
-                        .isEqualTo(firstName),
+        List<String> nameResourcesList = resourcesList.stream().map(resource -> resource.getName()).collect(Collectors.toList());
 
-                () -> assertThat(singleUser.getData().getLastName())
-                        .withFailMessage(singleUser.getData().getLastName() + ", expected last name: " + lastName)
-                        .isEqualTo(lastName)
+        assertThat(nameResourcesList.contains(name))
+                .withFailMessage(name + "exist on resource page")
+                .isTrue();
+    }
 
-        );
+    @Test
+    @DisplayName("check user create successful")
+    @Owner("chilikinow@gmail.com")
+    @Severity(SeverityLevel.NORMAL)
+    void checkUserCreateSuccessful() {
+
+        String name = "morpheus";
+        String job = "leader";
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.addProperty("name", name);
+        jsonObject.addProperty("job", job);
+
+        given()
+                .body(jsonObject)
+                .when()
+                .post("/api/users")
+                .then()
+                .log().all()
+                .statusCode(201);
     }
 }

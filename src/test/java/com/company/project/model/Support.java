@@ -1,16 +1,18 @@
-package com.company.project.model.list;
+package com.company.project.model;
 
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 import io.qameta.allure.internal.shadowed.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class SingleUser {
+@SuppressWarnings("unused")
+public class Support {
 
     @Expose
-    private User data;
+    private String text;
     @Expose
-    private Support support;
+    private String url;
 
 }

@@ -1,13 +1,14 @@
-package com.company.project.tests;
+package com.company.project.tests.ui;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.logevents.SelenideLogger;
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Owner;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -16,27 +17,22 @@ import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
 @Slf4j
-@Tag("main_page")
-@DisplayName("main_page")
+@Tag("git_repo")
+@DisplayName("check git repo eroshenkoam/allure-example")
 public class MainPageTests extends UITestBase {
 
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
-    @Test
+    @ValueSource(ints = {76})
+    @ParameterizedTest(name = "check issue exist on repo")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
-    @DisplayName("main_page")
-    void firstTest() {
+    void checkDefiniteExistOnRepo(int issueNumber) {
+
+        Configuration.baseUrl = "https://github.com";
 
         final String REPOSITORY = "eroshenkoam/allure-example";
 
-        final int ISSUENUMBER = 76;
-
         step("Открываем страницу", () -> {
-            open("https://github.com");
+            open("/");
         });
         step("Ищем репозиторий " + REPOSITORY, () -> {
             $(".header-search-input").setValue(REPOSITORY).submit();
@@ -47,8 +43,8 @@ public class MainPageTests extends UITestBase {
         step("Открываем список задач", () -> {
             $("#issues-tab").click();
         });
-        step("Проверяем наличие задачи с номером " + ISSUENUMBER, () -> {
-            $(withText("#" + ISSUENUMBER)).shouldBe(Condition.visible);
+        step("Проверяем наличие задачи с номером " + issueNumber, () -> {
+            $(withText("#" + issueNumber)).shouldBe(Condition.visible);
         });
 
     }

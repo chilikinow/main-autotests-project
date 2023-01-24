@@ -1,5 +1,5 @@
 
-package com.company.project.model.list;
+package com.company.project.model;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -12,8 +12,8 @@ import lombok.Data;
 @SuppressWarnings("unused")
 public class ListUsers {
 
-    @Expose
-    private List<User> data;
+    @SerializedName("data")
+    private List<User> usersList;
     @Expose
     private Long page;
     @SerializedName("per_page")
