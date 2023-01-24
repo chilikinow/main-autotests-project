@@ -137,7 +137,7 @@ public class ReqresInTests {
         List<String> nameResourcesList = resourcesList.stream().map(resource -> resource.getName()).collect(Collectors.toList());
 
         assertThat(nameResourcesList.contains(name))
-                .withFailMessage(name + "exist on resource page")
+                .withFailMessage(name + " not exist on resource page")
                 .isTrue();
     }
 
