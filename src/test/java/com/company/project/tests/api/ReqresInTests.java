@@ -157,7 +157,7 @@ public class ReqresInTests {
                 .when()
                 .post("/api/users")
                 .then()
-                .log().all()
+                .log().status()
                 .statusCode(201);
     }
 }
