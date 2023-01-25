@@ -28,10 +28,10 @@ public class ReqresInTests {
         baseURI = "https://reqres.in";
     }
 
-    @Feature("JIRAPROJECT-25261")
-    @Story("JIRAPROJECT-23077")
     @ValueSource(ints = {1,2,3})
     @ParameterizedTest(name = "check all user attributes not null on page {0}")
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkAllUserAttributesNotNullTest(int pageNumber) {
@@ -70,10 +70,10 @@ public class ReqresInTests {
                 }));
     }
 
-    @Feature("JIRAPROJECT-25261")
-    @Story("JIRAPROJECT-23077")
     @CsvFileSource(resources = "/users.csv")
     @ParameterizedTest(name = "check user id:{0}, exist")
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteUserTest(Long id, String email, String firstName, String lastName) {
@@ -106,10 +106,10 @@ public class ReqresInTests {
         );
     }
 
-    @Feature("JIRAPROJECT-25261")
-    @Story("JIRAPROJECT-23077")
     @ValueSource(ints = {997, 998, 999})
     @ParameterizedTest(name = "check user id {0}, not exist")
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkSingleUserNotFound(int id) {
@@ -123,10 +123,10 @@ public class ReqresInTests {
 
     }
 
-    @Feature("JIRAPROJECT-25261")
-    @Story("JIRAPROJECT-23077")
     @CsvFileSource(resources = "/resources.csv")
     @ParameterizedTest(name = "check name {0} exist on resource page")
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkNameExistOnResourcePageTest(String name) {
@@ -149,10 +149,10 @@ public class ReqresInTests {
                 .isTrue();
     }
 
-    @Feature("JIRAPROJECT-25261")
-    @Story("JIRAPROJECT-23077")
     @Test
     @DisplayName("check user create successful")
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.CRITICAL)
     void checkUserCreateSuccessful() {
