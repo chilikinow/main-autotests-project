@@ -28,6 +28,8 @@ public class ReqresInTests {
         baseURI = "https://reqres.in";
     }
 
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @ValueSource(ints = {1,2,3})
     @ParameterizedTest(name = "check all user attributes not null on page {0}")
     @Owner("chilikinow@gmail.com")
@@ -68,6 +70,8 @@ public class ReqresInTests {
                 }));
     }
 
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @CsvFileSource(resources = "/users.csv")
     @ParameterizedTest(name = "check user id:{0}, exist")
     @Owner("chilikinow@gmail.com")
@@ -102,6 +106,8 @@ public class ReqresInTests {
         );
     }
 
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @ValueSource(ints = {997, 998, 999})
     @ParameterizedTest(name = "check user id {0}, not exist")
     @Owner("chilikinow@gmail.com")
@@ -117,6 +123,8 @@ public class ReqresInTests {
 
     }
 
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @CsvFileSource(resources = "/resources.csv")
     @ParameterizedTest(name = "check name {0} exist on resource page")
     @Owner("chilikinow@gmail.com")
@@ -141,6 +149,8 @@ public class ReqresInTests {
                 .isTrue();
     }
 
+    @Feature("JIRAPROJECT-25261")
+    @Story("JIRAPROJECT-23077")
     @Test
     @DisplayName("check user create successful")
     @Owner("chilikinow@gmail.com")
