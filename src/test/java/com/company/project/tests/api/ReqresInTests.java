@@ -2,9 +2,7 @@ package com.company.project.tests.api;
 
 import com.company.project.model.*;
 import com.google.gson.JsonObject;
-import io.qameta.allure.Owner;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;

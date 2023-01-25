@@ -2,9 +2,7 @@ package com.company.project.tests.ui;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
-import io.qameta.allure.Owner;
-import io.qameta.allure.Severity;
-import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,6 +21,8 @@ public class CurrentGitRepoTests extends UITestBase {
 
     @ValueSource(ints = {76})
     @ParameterizedTest(name = "check issue exist on repo")
+    @Feature("JIRAPROJECT-24268")
+    @Story("JIRAPROJECT-23076")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteExistOnRepo(int issueNumber) {
