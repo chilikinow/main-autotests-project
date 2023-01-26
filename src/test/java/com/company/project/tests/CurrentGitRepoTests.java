@@ -1,4 +1,4 @@
-package com.company.project.tests.ui;
+package com.company.project.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
 @Slf4j
-@Tag("git_repo")
+@Tag("ui_git_repo")
 @DisplayName("check git repo eroshenkoam/allure-example")
 public class CurrentGitRepoTests extends UITestBase {
 
@@ -46,7 +46,5 @@ public class CurrentGitRepoTests extends UITestBase {
         step("Проверяем наличие задачи с номером " + issueNumber, () -> {
             $(withText("#" + issueNumber)).shouldBe(Condition.visible);
         });
-
     }
-
 }

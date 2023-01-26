@@ -1,5 +1,4 @@
-
-package com.company.project.model;
+package com.company.project.model.reqres.in;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -10,10 +9,10 @@ import lombok.Data;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 @SuppressWarnings("unused")
-public class ListUsers {
+public class ListResources {
 
     @SerializedName("data")
-    private List<User> usersList;
+    private List<Resource> resourcesList;
     @Expose
     private Long page;
     @SerializedName("per_page")

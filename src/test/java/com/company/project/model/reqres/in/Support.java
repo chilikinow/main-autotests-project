@@ -1,7 +1,6 @@
-package com.company.project.model;
+package com.company.project.model.reqres.in;
 
 import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
 import io.qameta.allure.internal.shadowed.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 

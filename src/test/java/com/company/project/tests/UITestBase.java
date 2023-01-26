@@ -1,4 +1,4 @@
-package com.company.project.tests.ui;
+package com.company.project.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
@@ -42,7 +42,6 @@ public class UITestBase {
             capabilities.setCapability("enableVNC", true);
             capabilities.setCapability("enableVideo", true);
             Configuration.browserCapabilities = capabilities;
-
         }
     }
 

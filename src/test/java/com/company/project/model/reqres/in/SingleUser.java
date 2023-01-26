@@ -1,4 +1,4 @@
-package com.company.project.model;
+package com.company.project.model.reqres.in;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -7,10 +7,10 @@ import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
-public class SingleResource {
+public class SingleUser {
 
     @SerializedName("data")
-    private Resource resource;
+    private User user;
     @Expose
     private Support support;
 

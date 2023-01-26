@@ -1,24 +1,27 @@
-package com.company.project.model;
+
+package com.company.project.model.reqres.in;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import io.qameta.allure.internal.shadowed.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 import lombok.Data;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Data
+@Builder
 @SuppressWarnings("unused")
-public class Resource {
+public class User {
 
     @Expose
-    private String color;
+    private String avatar;
+    @Expose
+    private String email;
+    @SerializedName("first_name")
+    private String firstName;
     @Expose
     private Long id;
-    @Expose
-    private String name;
-    @SerializedName("pantone_value")
-    private String pantoneValue;
-    @Expose
-    private Long year;
+    @SerializedName("last_name")
+    private String lastName;
 
 }

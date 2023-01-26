@@ -1,6 +1,6 @@
-package com.company.project.tests.api;
+package com.company.project.tests;
 
-import com.company.project.model.*;
+import com.company.project.model.reqres.in.*;
 import com.google.gson.JsonObject;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeAll;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 @Tag("api_reqres_in")
-@DisplayName("check api https://reqres.in/")
+@DisplayName("check api https://reqres.in")
 public class ReqresInTests {
 
     @BeforeAll
