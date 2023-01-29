@@ -1,7 +1,7 @@
 package com.company.project.tests;
 
 import com.company.project.model.reqres.in.*;
-import com.google.gson.JsonObject;
+import com.company.project.specs.BaseSpec;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -12,7 +12,6 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -24,10 +23,11 @@ public class ReqresInTests {
     @BeforeAll
     static void beforeAll() {
         baseURI = "https://reqres.in";
+        basePath = "/api";
     }
 
     @ValueSource(ints = {1,2,3})
-    @ParameterizedTest(name = "check all user attributes not null on page {0}")
+    @ParameterizedTest(name = "check all user attributes not null on page")
     @Feature("JIRAPROJECT-25261")
     @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
@@ -35,15 +35,16 @@ public class ReqresInTests {
     void checkAllUserAttributesNotNullTest(int pageNumber) {
 
         List<User> userList = given()
-                                    .queryParam("page", pageNumber)
-                                    .when()
-                                    .get("/api/users")
-                                    .then()
-                                    .log().status()
-                                    .statusCode(200)
-                                    .extract()
-                                    .body()
-                                    .as(ListUsers.class).getUsersList();
+                .spec(BaseSpec.baseRequestSpec)
+                .queryParam("page", pageNumber)
+                .when()
+                .get("/users")
+                .then()
+                .spec(BaseSpec.baseResponseSpec)
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(ListUsers.class).getUsersList();
 
         assertAll("all users have attributes (email, first name, last name): ",
 
@@ -69,7 +70,7 @@ public class ReqresInTests {
     }
 
     @CsvFileSource(resources = "/users.csv")
-    @ParameterizedTest(name = "check user id:{0}, exist")
+    @ParameterizedTest(name = "check definite user exist")
     @Feature("JIRAPROJECT-25261")
     @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
@@ -77,15 +78,16 @@ public class ReqresInTests {
     void checkDefiniteUserTest(Long id, String email, String firstName, String lastName) {
 
         User user = given()
-                            .when()
-                            .get("/api/users/" + id)
-                            .then()
-                            .log().status()
-                            .statusCode(200)
-                            .extract()
-                            .body()
-                            .as(SingleUser.class)
-                            .getUser();
+                .spec(BaseSpec.baseRequestSpec)
+                .when()
+                .get("/users/" + id)
+                .then()
+                .spec(BaseSpec.baseResponseSpec)
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(SingleUser.class)
+                .getUser();
 
         assertAll("it's same user what expected on id " + id + " : ",
 
@@ -100,12 +102,11 @@ public class ReqresInTests {
                 () -> assertThat(user.getLastName())
                         .withFailMessage(user.getLastName() + ", expected last name: " + lastName)
                         .isEqualTo(lastName)
-
         );
     }
 
     @ValueSource(ints = {997, 998, 999})
-    @ParameterizedTest(name = "check user id {0}, not exist")
+    @ParameterizedTest(name = "check single user not exist")
     @Feature("JIRAPROJECT-25261")
     @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
@@ -113,12 +114,12 @@ public class ReqresInTests {
     void checkSingleUserNotFound(int id) {
 
         given()
+                .spec(BaseSpec.baseRequestSpec)
                 .when()
-                .get("/api/users/" + id)
+                .get("/users/" + id)
                 .then()
-                .log().status()
+                .spec(BaseSpec.baseResponseSpec)
                 .statusCode(404);
-
     }
 
     @CsvFileSource(resources = "/resources.csv")
@@ -130,15 +131,16 @@ public class ReqresInTests {
     void checkNameExistOnResourcePageTest(String name) {
 
         List<Resource> resourcesList = given()
-                                            .when()
-                                            .get("/api/unknown")
-                                            .then()
-                                            .log().status()
-                                            .statusCode(200)
-                                            .extract()
-                                            .body()
-                                            .as(ListResources.class)
-                                            .getResourcesList();
+                .spec(BaseSpec.baseRequestSpec)
+                .when()
+                .get("/unknown")
+                .then()
+                .spec(BaseSpec.baseResponseSpec)
+                .statusCode(200)
+                .extract()
+                .body()
+                .as(ListResources.class)
+                .getResourcesList();
 
         List<String> nameResourcesList = resourcesList.stream().map(resource -> resource.getName()).collect(Collectors.toList());
 
@@ -155,19 +157,25 @@ public class ReqresInTests {
     @Severity(SeverityLevel.CRITICAL)
     void checkUserCreateSuccessful() {
 
-        String name = "morpheus";
-        String job = "leader";
+//        String name = "morpheus";
+//        String job = "leader";
+//
+//        JsonObject jsonObject = new JsonObject();
+//        jsonObject.addProperty("name", name);
+//        jsonObject.addProperty("job", job);
 
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("name", name);
-        jsonObject.addProperty("job", job);
+        User user = User.builder()
+                .name("morpheus")
+                .job("leader")
+                .build();
 
         given()
-                .body(jsonObject)
+                .spec(BaseSpec.baseRequestSpec)
+                .body(user)
                 .when()
-                .post("/api/users")
+                .post("/users")
                 .then()
-                .log().status()
+                .spec(BaseSpec.baseResponseSpec)
                 .statusCode(201);
     }
 }

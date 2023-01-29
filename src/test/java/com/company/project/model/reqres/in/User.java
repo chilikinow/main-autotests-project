@@ -23,5 +23,9 @@ public class User {
     private Long id;
     @SerializedName("last_name")
     private String lastName;
+    @Expose(serialize = false, deserialize = false)
+    private String name;
+    @Expose(serialize = false, deserialize = false)
+    private String job;
 
 }
