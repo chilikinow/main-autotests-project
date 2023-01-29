@@ -12,6 +12,8 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.company.project.specs.BaseSpec.*;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -35,12 +37,12 @@ public class ReqresInTests {
     void checkAllUserAttributesNotNullTest(int pageNumber) {
 
         List<User> userList = given()
-                .spec(BaseSpec.baseRequestSpec)
+                .spec(baseRequestSpec)
                 .queryParam("page", pageNumber)
                 .when()
                 .get("/users")
                 .then()
-                .spec(BaseSpec.baseResponseSpec)
+                .spec(baseResponseSpec)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -78,11 +80,11 @@ public class ReqresInTests {
     void checkDefiniteUserTest(Long id, String email, String firstName, String lastName) {
 
         User user = given()
-                .spec(BaseSpec.baseRequestSpec)
+                .spec(baseRequestSpec)
                 .when()
                 .get("/users/" + id)
                 .then()
-                .spec(BaseSpec.baseResponseSpec)
+                .spec(baseResponseSpec)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -114,11 +116,11 @@ public class ReqresInTests {
     void checkSingleUserNotFound(int id) {
 
         given()
-                .spec(BaseSpec.baseRequestSpec)
+                .spec(baseRequestSpec)
                 .when()
                 .get("/users/" + id)
                 .then()
-                .spec(BaseSpec.baseResponseSpec)
+                .spec(baseResponseSpec)
                 .statusCode(404);
     }
 
@@ -131,11 +133,11 @@ public class ReqresInTests {
     void checkNameExistOnResourcePageTest(String name) {
 
         List<Resource> resourcesList = given()
-                .spec(BaseSpec.baseRequestSpec)
+                .spec(baseRequestSpec)
                 .when()
                 .get("/unknown")
                 .then()
-                .spec(BaseSpec.baseResponseSpec)
+                .spec(baseResponseSpec)
                 .statusCode(200)
                 .extract()
                 .body()
@@ -170,12 +172,12 @@ public class ReqresInTests {
                 .build();
 
         given()
-                .spec(BaseSpec.baseRequestSpec)
+                .spec(baseRequestSpec)
                 .body(user)
                 .when()
                 .post("/users")
                 .then()
-                .spec(BaseSpec.baseResponseSpec)
+                .spec(baseResponseSpec)
                 .statusCode(201);
     }
 }
