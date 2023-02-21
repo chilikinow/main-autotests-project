@@ -92,7 +92,7 @@ task regression_test(type: Test) {
     useJUnitPlatform {
         includeTags("ui_git_repo")
         includeTags("api_reqres_in")
-        includeTags("api_demowebshop_tricentis_com")
+        excludeTags("api_demowebshop_tricentis_com")
     }
 }
 

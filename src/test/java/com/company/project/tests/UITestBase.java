@@ -23,20 +23,18 @@ public class UITestBase {
     @BeforeAll
     static void beforeAll() {
 
-        //
+        selenideLocation = System.getProperty("selenide.location");
 
-//        selenideLocation = System.getProperty("selenide.location");
-//
-//        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
-//        Configuration.remote = selenideConfig.getSelenoidUrl();
-//        Configuration.browser = selenideConfig.getBrowserName();
-//        Configuration.browserVersion = selenideConfig.getBrowserVersion();
-//        Configuration.browserSize = selenideConfig.getBrowserSize();
-//        Configuration.timeout = selenideConfig.getBrowserTimeout();
-//        Configuration.headless = selenideConfig.isBrowserHeadless();
-//        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
-//
-//        Configuration.fileDownload = FOLDER;
+        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
+        Configuration.remote = selenideConfig.getSelenoidUrl();
+        Configuration.browser = selenideConfig.getBrowserName();
+        Configuration.browserVersion = selenideConfig.getBrowserVersion();
+        Configuration.browserSize = selenideConfig.getBrowserSize();
+        Configuration.timeout = selenideConfig.getBrowserTimeout();
+        Configuration.headless = selenideConfig.isBrowserHeadless();
+        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
+
+        Configuration.fileDownload = FOLDER;
 
         if (selenideLocation != null && selenideLocation.equals("remote")) {
 
