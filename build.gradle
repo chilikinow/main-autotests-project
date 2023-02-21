@@ -52,8 +52,9 @@ dependencies {
             ,"io.qameta.allure:allure-junit5:$allureVersion"
             ,"com.google.code.gson:gson:2.2.4"
             ,"org.aeonbits.owner:owner:1.0.12"
-            ,'com.github.javafaker:javafaker:1.0.2'
-            ,'com.google.code.gson:gson:2.2.4'
+            ,"com.github.javafaker:javafaker:1.0.2"
+            ,"com.google.code.gson:gson:2.2.4"
+
     )
 
     testCompileOnly "org.projectlombok:lombok:$lombokVersion"
