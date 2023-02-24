@@ -2,6 +2,7 @@ package com.company.project.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
+import com.company.project.base.UiTestBase;
 import io.qameta.allure.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -15,9 +16,16 @@ import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
 @Slf4j
-@Tag("ui_git_repo")
+@Tag("ui")
 @DisplayName("check git repo eroshenkoam/allure-example")
-public class CurrentGitRepoTests extends UITestBase {
+public class CurrentGitRepoTests extends UiTestBase {
+
+    @BeforeAll
+    static void beforeAll() {
+
+        Configuration.baseUrl = "https://github.com";
+
+    }
 
     @ValueSource(ints = {76})
     @ParameterizedTest(name = "check issue exist on repo")
@@ -26,8 +34,6 @@ public class CurrentGitRepoTests extends UITestBase {
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteExistOnRepo(int issueNumber) {
-
-        Configuration.baseUrl = "https://github.com";
 
         final String REPOSITORY = "eroshenkoam/allure-example";
 

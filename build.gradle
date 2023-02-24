@@ -90,9 +90,8 @@ tasks.withType(Copy).all {
 
 task regression_test(type: Test) {
     useJUnitPlatform {
-        includeTags("ui_git_repo")
-        includeTags("api_reqres_in")
-        excludeTags("api_demowebshop_tricentis_com")
+        includeTags("ui")
+        includeTags("api")
     }
 }
 
