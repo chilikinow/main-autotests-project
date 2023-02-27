@@ -1,9 +1,11 @@
 package com.company.project.tests;
 
+import com.company.project.base.ApiTestBase;
 import com.company.project.model.reqres.in.ListUsers;
 import com.company.project.model.reqres.in.User;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,9 +16,10 @@ import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 
-@Tag("api_demowebshop_tricentis_com")
+@Disabled
+@Tag("api")
 @DisplayName("check api https://demowebshop.tricentis.com")
-public class DemoWebShopTricentisComTests {
+public class DemoWebShopTricentisComTests extends ApiTestBase {
 
     @BeforeAll
     static void beforeAll() {

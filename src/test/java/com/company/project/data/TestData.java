@@ -1,29 +1,17 @@
-package com.company.project.tests;
+package com.company.project.data;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import com.company.project.helpers.Attach;
 import com.company.project.config.SelenideConfig;
-import io.qameta.allure.selenide.AllureSelenide;
-import lombok.extern.slf4j.Slf4j;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.FileDownloadMode.FOLDER;
 
-@Slf4j
-public class UITestBase {
+public class TestData {
 
-    private static String selenideLocation;
+    public static String selenideLocation;
 
-    @BeforeAll
-    static void beforeAll() {
-
-        //
+    static {
 
 //        selenideLocation = System.getProperty("selenide.location");
 //
@@ -45,23 +33,7 @@ public class UITestBase {
             capabilities.setCapability("enableVideo", true);
             Configuration.browserCapabilities = capabilities;
         }
+
     }
 
-    @BeforeEach
-    void addListener() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-    }
-
-    @AfterEach
-    void afterEach(){
-
-        Selenide.closeWebDriver();
-
-        if (selenideLocation != null && selenideLocation.equals("remote")) {
-            Attach.screenshotAs("Last screenshot");
-            Attach.pageSource();
-            Attach.browserConsoleLogs();
-            Attach.addVideo();
-        }
-    }
 }
