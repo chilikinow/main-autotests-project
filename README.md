@@ -1,5 +1,5 @@
-##Проект
-###Закрепление полученных навыков на практике
+## Проект
+### Закрепление полученных навыков на практике
 #### Технологии и инструменты:
 <p align="center">
 <a href="https://www.jetbrains.com/idea/"><img src="/design/Intelij_IDEA.png" width="50" height="50"  alt="IDEA"/></a>
