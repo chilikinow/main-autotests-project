@@ -24,7 +24,6 @@ public class CurrentGitRepoTests extends UiTestBase {
     static void beforeAll() {
 
         Configuration.baseUrl = "https://github.com";
-
     }
 
     @ValueSource(ints = {76})

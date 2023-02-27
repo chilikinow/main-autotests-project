@@ -2,7 +2,6 @@ package com.company.project.tests;
 
 import com.company.project.base.ApiTestBase;
 import com.company.project.model.reqres.in.*;
-import com.company.project.specs.BaseSpec;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -30,7 +29,7 @@ public class ReqresInTests extends ApiTestBase {
     }
 
     @ValueSource(ints = {1,2,3})
-    @ParameterizedTest(name = "check all user attributes not null on page")
+    @ParameterizedTest(name = "check all user attributes not null on page: {arguments}")
     @Feature("JIRAPROJECT-25261")
     @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
@@ -109,7 +108,7 @@ public class ReqresInTests extends ApiTestBase {
     }
 
     @ValueSource(ints = {997, 998, 999})
-    @ParameterizedTest(name = "check single user not exist")
+    @ParameterizedTest(name = "check user {arguments} not exist")
     @Feature("JIRAPROJECT-25261")
     @Story("JIRAPROJECT-23077")
     @Owner("chilikinow@gmail.com")
