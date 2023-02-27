@@ -26,11 +26,7 @@ public class HeadHunterTests extends UiTestBase {
 
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://hh.ru";
-    }
-
-    @BeforeEach
-    void setUp() {
-        new HeadHunter().openAdvancedSearchPage();
+        Configuration.headless = true;
     }
 
     @Feature("JIRAPROJECT-23011")
@@ -41,27 +37,11 @@ public class HeadHunterTests extends UiTestBase {
     @Test
     void createPartTimeQASearchTest() {
 
-        step("Set IT category", () -> {
-            searchingForm.find(byText("Указать специализации")).click();
-            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
-                    .ancestor("div").$(".bloko-tree-selector-item-spacer").click();
-        });
-
-        step("Set QA profile", () -> {
-            $(".bloko-tree-selector__items").find(byText("Тестировщик")).click();
-            submitButton.click();
-        });
-
-        step("Set remote", () -> {
-            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
-        });
-
-        step("Set part-time employment", () -> {
-            searchingForm.find(byText("Неполный день")).scrollTo().click();
-            searchingForm.find(byText("От 4 часов в день")).click();
-            searchingForm.find(byText("По выходным")).click();
-            searchingForm.find(byText("По вечерам")).click();
-        });
+        new HeadHunter().openAdvancedSearchPage()
+                .setItCategory()
+                .setQaProfile()
+                .setRemote()
+                .setPartTimeEmployment();
 
         step("Check checked inputs in result", () -> {
             $(".search-submit-wrapper").find(byText("Найти")).click();
@@ -98,27 +78,14 @@ public class HeadHunterTests extends UiTestBase {
     @Test
     void createFullTimeQASearchTest() {
 
-        step("Set IT category", () -> {
-            searchingForm.find(byText("Указать специализации")).click();
-            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
-                    .ancestor("div").$(".bloko-tree-selector-item-spacer").click();
-        });
-
-        step("Set QA profile", () -> {
-            $(".bloko-tree-selector__items").find(byText("Тестировщик")).click();
-            submitButton.click();
-        });
-
-        step("Set remote", () -> {
-            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
-        });
-
-        step("Set full-time employment", () -> {
-            searchingForm.find(byText("Полный день")).scrollTo().click();
-            searchingForm.find(byText("Гибкий график")).click();
-        });
+        new HeadHunter().openAdvancedSearchPage()
+                .setItCategory()
+                .setQaProfile()
+                .setRemote()
+                .setFullTimeEmployment();
 
         step("Check checked inputs in result", () -> {
+
             $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
@@ -143,31 +110,20 @@ public class HeadHunterTests extends UiTestBase {
     @Test
     void createTemporaryJobQASearchTest() {
 
-        step("Set IT category", () -> {
-            searchingForm.find(byText("Указать специализации")).click();
-            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
-                    .ancestor("div").$(".bloko-tree-selector-item-spacer").click();
-        });
-        step("Set QA profile", () -> {
-            $(".bloko-tree-selector__items").find(byText("Тестировщик")).click();
-            submitButton.click();
-        });
-        step("Set region", () -> {
-            searchingForm.find(byText("Москва")).ancestor(".bloko-tag-list")
-                    .sibling(0).$(".bloko-input-text").val("Россия");
-        });
-        step("Set remote", () -> {
-            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
-        });
-        step("Set temporary employment", () -> {
-            searchingForm.find(byText("Полный день")).scrollTo().click();
-            searchingForm.find(byText("Гибкий график")).click();
-        });
+        new HeadHunter().openAdvancedSearchPage()
+                .setItCategory()
+                .setQaProfile()
+                .setRemote()
+                .setFullTimeEmployment()
+                .setRegion("Москва");
+
+
         step("Check checked inputs in result", () -> {
+
             $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
-            employmentFindDiv.find(byText("Россия")).ancestor("label")
+            employmentFindDiv.find(byText("Москва")).ancestor("label")
                     .$(".bloko-checkbox__input").shouldBe(checked);
             employmentFindDiv.find(byText("Тестировщик")).ancestor("label")
                     .$(".bloko-checkbox__input").shouldBe(checked);
@@ -188,28 +144,13 @@ public class HeadHunterTests extends UiTestBase {
     @Test
     void createSelenideFromSearchHeaderTest() {
 
-        step("Input Selenide to header", () -> {
-            searchingForm.$$(".bloko-form-row").first().$(".bloko-input-text").val("Selenide");
-        });
-
-        step("Set IT category", () -> {
-            searchingForm.find(byText("Указать специализации")).click();
-            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
-                    .ancestor("div").$(".bloko-tree-selector-item-spacer").click();
-        });
-
-        step("Set QA profile", () -> {
-            $(".bloko-tree-selector__items").find(byText("Тестировщик")).click();
-            submitButton.click();
-        });
-
-        step("Set null experience", () -> {
-            searchingForm.find(byText("Нет опыта")).scrollTo().click();
-        });
-
-        step("Set remote", () -> {
-            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
-        });
+        new HeadHunter().openAdvancedSearchPage()
+                .setItCategory()
+                .setQaProfile()
+                .setRemote()
+                .setRegion("Москва")
+                .setTechToHeader("Selenide")
+                .setNullExperience();
 
         step("Check checked inputs in result", () -> {
 
@@ -241,11 +182,8 @@ public class HeadHunterTests extends UiTestBase {
     @ParameterizedTest(name = "check headers parameter {arguments}")
     void headersParameterTest(String arg) {
 
-        step("Input Selenide to header", () -> {
-
-            searchingForm.$$(".bloko-form-row").first().$(".bloko-input-text").val(arg);
-
-        });
+        new HeadHunter().openAdvancedSearchPage()
+                .setTechToHeader(arg);
 
         step("Check headers parameter in result", () -> {
 
