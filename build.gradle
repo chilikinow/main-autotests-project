@@ -54,6 +54,7 @@ dependencies {
             ,"org.aeonbits.owner:owner:1.0.12"
             ,"com.github.javafaker:javafaker:1.0.2"
             ,"com.google.code.gson:gson:2.2.4"
+            ,"org.jsoup:jsoup:1.15.3"
     )
 
     testCompileOnly "org.projectlombok:lombok:$lombokVersion"
@@ -89,8 +90,10 @@ tasks.withType(Copy).all {
 
 task regression_test(type: Test) {
     useJUnitPlatform {
-        includeTags("ui")
-        includeTags("api")
+        includeTags("reqres")
+        includeTags("demowebshop")
+        includeTags("gitrepo")
+        includeTags("headhunter")
     }
 }
 
