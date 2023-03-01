@@ -16,10 +16,14 @@ import static com.company.project.reqres.specs.BaseSpec.*;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.hamcrest.Matchers.hasItem;
 
 @Tag("reqres")
 @DisplayName("check api https://reqres.in")
 public class ReqresTests{
+
+    public static final String USERS_ENDPOINT = "/users/";
+    public static final String UNKNOWN_ENDPOINT = "/unknown/";
 
     @BeforeAll
     static void beforeAll() {
@@ -39,7 +43,7 @@ public class ReqresTests{
                 .spec(baseRequestSpec)
                 .queryParam("page", pageNumber)
                 .when()
-                .get("/users")
+                .get(USERS_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -81,7 +85,7 @@ public class ReqresTests{
         User user = given()
                 .spec(baseRequestSpec)
                 .when()
-                .get("/users/" + id)
+                .get(USERS_ENDPOINT + id)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -117,7 +121,7 @@ public class ReqresTests{
         given()
                 .spec(baseRequestSpec)
                 .when()
-                .get("/users/" + id)
+                .get(USERS_ENDPOINT + id)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(404);
@@ -134,7 +138,7 @@ public class ReqresTests{
         List<Resource> resourcesList = given()
                 .spec(baseRequestSpec)
                 .when()
-                .get("/unknown")
+                .get(UNKNOWN_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -150,12 +154,12 @@ public class ReqresTests{
                 .isTrue();
     }
 
-    @Test
     @DisplayName("check user create successful")
     @Feature("JIRAPROJECT-21012")
     @Story("JIRAPROJECT-21000")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
+    @Test
     void checkUserCreateSuccessful() {
 
 //        String name = "morpheus";
@@ -174,9 +178,26 @@ public class ReqresTests{
                 .spec(baseRequestSpec)
                 .body(user)
                 .when()
-                .post("/users")
+                .post(USERS_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(201);
+    }
+
+    @DisplayName("Проверка email при помощи groovy")
+    @Feature("JIRAPROJECT-21012")
+    @Story("JIRAPROJECT-21000")
+    @Owner("chilikinow@gmail.com")
+    @Severity(SeverityLevel.NORMAL)
+    @Test
+    public void checEmailTest() {
+        given()
+                .spec(baseRequestSpec)
+                .when()
+                .get(USERS_ENDPOINT)
+                .then()
+                .spec(baseResponseSpec)
+                .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()",
+                        hasItem("emma.wong@reqres.in"));
     }
 }
