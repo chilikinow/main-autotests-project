@@ -12,7 +12,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.company.project.reqres.specs.BaseSpec.*;
+import static com.company.project.specs.SpecBase.*;
 import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;

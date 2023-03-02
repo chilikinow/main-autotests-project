@@ -17,7 +17,7 @@ import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
-import static com.company.project.demowebshop.specs.SpecBase.*;
+import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check login on https://demowebshop.tricentis.com")

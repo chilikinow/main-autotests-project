@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static com.company.project.demowebshop.specs.SpecBase.*;
+import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check add to card on https://demowebshop.tricentis.com")

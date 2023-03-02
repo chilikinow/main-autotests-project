@@ -5,7 +5,7 @@ import com.company.project.demowebshop.model.User;
 import io.restassured.response.Response;
 
 import static com.company.project.demowebshop.tests.RegisterTests.client;
-import static com.company.project.demowebshop.specs.SpecBase.responseSpec;
+import static com.company.project.demowebshop.specs.Spec.responseSpec;
 import static com.company.project.demowebshop.tests.RegisterTests.requestVerificationToken;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;

@@ -1,4 +1,4 @@
-package com.company.project.reqres.specs;
+package com.company.project.specs;
 
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.specification.RequestSpecification;
@@ -9,7 +9,7 @@ import static io.restassured.RestAssured.with;
 import static io.restassured.filter.log.LogDetail.BODY;
 import static io.restassured.filter.log.LogDetail.STATUS;
 
-public class BaseSpec {
+public class SpecBase {
 
     public static RequestSpecification baseRequestSpec = with()
             .log().uri()
