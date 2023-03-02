@@ -3,14 +3,17 @@ package com.company.project.demowebshop.tests;
 import com.company.project.demowebshop.utils.RegisterClient;
 import com.company.project.demowebshop.model.User;
 import io.qameta.allure.*;
+import io.restassured.RestAssured;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("demowebshop")
@@ -20,6 +23,11 @@ public class RegisterTests extends TestBase {
     public static String requestVerificationToken;
     public static final RegisterClient client = new RegisterClient();
     User user = null;
+
+    @BeforeAll
+    static void setUp() {
+        baseURI = "https://demowebshop.tricentis.com";
+    }
 
     @Feature("JIRAPROJECT-26014")
     @Story("JIRAPROJECT-28000")

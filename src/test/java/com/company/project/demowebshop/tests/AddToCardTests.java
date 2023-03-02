@@ -1,6 +1,8 @@
 package com.company.project.demowebshop.tests;
 
 import io.qameta.allure.*;
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,11 @@ import static com.company.project.demowebshop.specs.Spec.*;
 @Tag("demowebshop")
 @DisplayName("check add to card on https://demowebshop.tricentis.com")
 public class AddToCardTests extends TestBase {
+
+    @BeforeAll
+    static void setUp() {
+        RestAssured.baseURI = "https://demowebshop.tricentis.com";
+    }
 
     @Feature("JIRAPROJECT-26011")
     @Story("JIRAPROJECT-28000")

@@ -2,6 +2,7 @@ package com.company.project.demowebshop.tests;
 
 import com.company.project.demowebshop.config.Authorization;
 import io.qameta.allure.*;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.aeonbits.owner.ConfigFactory;
 import org.jsoup.Jsoup;
@@ -14,6 +15,7 @@ import java.util.Objects;
 
 import static com.company.project.helpers.CustomApiListener.withCustomTemplates;
 import static io.qameta.allure.Allure.step;
+import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
@@ -33,6 +35,7 @@ public class LoginTests extends TestBase {
         config = ConfigFactory.create(Authorization.class, System.getProperties());
         login = config.getLogin();
         password = config.getPass();
+        baseURI = "https://demowebshop.tricentis.com";
     }
 
     @Feature("JIRAPROJECT-26012")

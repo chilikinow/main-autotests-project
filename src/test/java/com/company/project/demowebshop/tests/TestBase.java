@@ -6,8 +6,4 @@ import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase extends TestData {
 
-    @BeforeAll
-    static void setUp() {
-        RestAssured.baseURI = "https://demowebshop.tricentis.com";
-    }
 }
