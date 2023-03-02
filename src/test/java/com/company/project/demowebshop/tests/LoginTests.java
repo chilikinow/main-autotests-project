@@ -2,15 +2,12 @@ package com.company.project.demowebshop.tests;
 
 import com.company.project.demowebshop.config.Authorization;
 import io.qameta.allure.*;
-import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.aeonbits.owner.ConfigFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import java.util.Objects;
 
 import static com.company.project.helpers.CustomApiListener.withCustomTemplates;
@@ -23,6 +20,7 @@ import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check login on https://demowebshop.tricentis.com")
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class LoginTests extends TestBase {
 
     private static Authorization config;

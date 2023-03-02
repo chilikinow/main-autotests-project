@@ -19,6 +19,7 @@ import static io.qameta.allure.Allure.step;
 @Slf4j
 @Tag("headhunter")
 @DisplayName("check advanced search page: https://hh.ru/search/vacancy/advanced")
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class HeadHunterTests extends UiTestBase {
 
     @BeforeAll

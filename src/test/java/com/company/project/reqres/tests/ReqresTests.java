@@ -2,10 +2,7 @@ package com.company.project.reqres.tests;
 
 import com.company.project.reqres.models.*;
 import io.qameta.allure.*;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
@@ -19,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.hamcrest.Matchers.hasItem;
 
 @Tag("reqres")
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @DisplayName("check api https://reqres.in")
 public class ReqresTests{
 

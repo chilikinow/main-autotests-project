@@ -2,10 +2,7 @@ package com.company.project.demowebshop.tests;
 
 import io.qameta.allure.*;
 import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
@@ -13,6 +10,7 @@ import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check add to card on https://demowebshop.tricentis.com")
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class AddToCardTests extends TestBase {
 
     @BeforeAll

@@ -3,14 +3,10 @@ package com.company.project.demowebshop.tests;
 import com.company.project.demowebshop.utils.RegisterClient;
 import com.company.project.demowebshop.model.User;
 import io.qameta.allure.*;
-import io.restassured.RestAssured;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static io.qameta.allure.Allure.step;
 import static io.restassured.RestAssured.*;
@@ -18,6 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("demowebshop")
 @DisplayName("check registration on https://demowebshop.tricentis.com")
+@TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class RegisterTests extends TestBase {
 
     public static String requestVerificationToken;
