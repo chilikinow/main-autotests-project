@@ -30,11 +30,4 @@ public class UiTestBase extends InitSelenide{
             Attach.addVideo();
         }
     }
-
-    @AfterAll
-    static void afterAll() {
-
-        Selenide.closeWebDriver();
-
-    }
 }
