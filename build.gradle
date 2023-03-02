@@ -91,7 +91,7 @@ tasks.withType(Copy).all {
 task regression_test(type: Test) {
     useJUnitPlatform {
         includeTags("reqres")
-//        includeTags("demowebshop")
+        includeTags("demowebshop")
         includeTags("gitrepo")
         includeTags("headhunter")
     }
