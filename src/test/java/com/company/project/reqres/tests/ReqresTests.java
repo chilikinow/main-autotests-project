@@ -184,7 +184,7 @@ public class ReqresTests{
                 .statusCode(201);
     }
 
-    @DisplayName("Проверка email при помощи groovy")
+    @DisplayName("check email with groovy")
     @Feature("JIRAPROJECT-21012")
     @Story("JIRAPROJECT-21000")
     @Owner("chilikinow@gmail.com")
