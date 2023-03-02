@@ -190,7 +190,7 @@ public class ReqresTests{
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void checEmailTest() {
+    public void checkEmailTest() {
         given()
                 .spec(baseRequestSpec)
                 .when()
