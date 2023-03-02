@@ -21,7 +21,7 @@ public class UiTestBase extends InitSelenide{
     @AfterEach
     void afterEach(){
 
-        Selenide.closeWebDriver();
+//        Selenide.closeWebDriver();
 
         if (InitSelenide.selenideLocation != null && InitSelenide.selenideLocation.equals("remote")) {
             Attach.screenshotAs("Last screenshot");
