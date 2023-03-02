@@ -11,6 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
 public class RegisterClient {
+
     public Response getVerifyToken() {
         return given()
                 .when()
@@ -18,6 +19,7 @@ public class RegisterClient {
     }
 
     public Response createNewUser(User user) {
+
         return given()
                 .cookies(client.getVerifyToken().cookies())
                 .formParam("__RequestVerificationToken", requestVerificationToken)
@@ -37,6 +39,7 @@ public class RegisterClient {
     }
 
     public Response successRedirect(User user) {
+
         return given()
                 .cookies(client.createNewUser(user).cookies())
                 .when()

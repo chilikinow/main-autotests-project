@@ -53,9 +53,9 @@ public class LoginTests extends TestBase {
                     .filter(withCustomTemplates())
                     .formParam("Email", login)
                     .formParam("Password", password)
-            .when()
+                    .when()
                     .post("/login")
-            .then()
+                    .then()
                     .statusCode(302)
                     .extract()
                     .cookie("NOPCOMMERCE.AUTH");
