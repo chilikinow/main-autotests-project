@@ -1,7 +1,6 @@
 package com.company.project.demowebshop.tests;
 
 import io.qameta.allure.*;
-import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 
 import static io.restassured.RestAssured.given;
@@ -12,11 +11,6 @@ import static com.company.project.demowebshop.specs.Spec.*;
 @DisplayName("check add to card on https://demowebshop.tricentis.com")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class AddToCardTests extends TestBase {
-
-    @BeforeAll
-    static void setUp() {
-        RestAssured.baseURI = "https://demowebshop.tricentis.com";
-    }
 
     @Feature("JIRAPROJECT-26011")
     @Story("JIRAPROJECT-28000")
@@ -35,7 +29,7 @@ public class AddToCardTests extends TestBase {
                 .formParam("giftcard_1.Message", faker.lorem().fixedString(10))
                 .formParam("addtocart_1.EnteredQuantity", 1)
                 .when()
-                .post("/addproducttocart/details/1/1")
+                .post(BASE_URI + "/addproducttocart/details/1/1")
                 .then()
                 .statusCode(200)
                 .body("success", is(true),

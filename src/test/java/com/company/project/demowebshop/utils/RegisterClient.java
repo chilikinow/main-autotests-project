@@ -1,7 +1,7 @@
 package com.company.project.demowebshop.utils;
 
-
 import com.company.project.demowebshop.model.User;
+import com.company.project.demowebshop.tests.TestBase;
 import io.restassured.response.Response;
 
 import static com.company.project.demowebshop.tests.RegisterTests.client;
@@ -10,12 +10,13 @@ import static com.company.project.demowebshop.tests.RegisterTests.requestVerific
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-public class RegisterClient {
+public class RegisterClient extends TestBase{
 
     public Response getVerifyToken() {
+
         return given()
                 .when()
-                .get("/register");
+                .get(BASE_URI + "/register");
     }
 
     public Response createNewUser(User user) {
@@ -31,7 +32,7 @@ public class RegisterClient {
                 .formParam("ConfirmPassword", user.getPassword())
                 .formParam("register-button", "Register")
                 .when()
-                .post("/register")
+                .post(BASE_URI + "/register")
                 .then()
                 .log().all()
                 .statusCode(302)
@@ -43,7 +44,7 @@ public class RegisterClient {
         return given()
                 .cookies(client.createNewUser(user).cookies())
                 .when()
-                .get("/registerresult/1")
+                .get(BASE_URI + "/registerresult/1")
                 .then()
                 .statusCode(200)
                 .spec(responseSpec)

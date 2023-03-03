@@ -9,7 +9,6 @@ import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.*;
 
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Tag("demowebshop")
@@ -20,11 +19,6 @@ public class RegisterTests extends TestBase {
     public static String requestVerificationToken;
     public static final RegisterClient client = new RegisterClient();
     User user = null;
-
-    @BeforeAll
-    static void setUp() {
-        baseURI = "https://demowebshop.tricentis.com";
-    }
 
     @Feature("JIRAPROJECT-26014")
     @Story("JIRAPROJECT-28000")
@@ -65,7 +59,7 @@ public class RegisterTests extends TestBase {
             Element successText = doc.select("div:containsOwn(Your registration completed)")
                     .first();
 
-            assert successText != null;
+            assertThat(successText).isNotNull();
             assertThat(successText.html()).isEqualTo("Your registration completed");
         });
     }

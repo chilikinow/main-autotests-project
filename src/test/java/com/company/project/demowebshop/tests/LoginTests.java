@@ -33,7 +33,6 @@ public class LoginTests extends TestBase {
         config = ConfigFactory.create(Authorization.class, System.getProperties());
         login = config.getLogin();
         password = config.getPass();
-        baseURI = "https://demowebshop.tricentis.com";
     }
 
     @Feature("JIRAPROJECT-26012")
@@ -52,7 +51,7 @@ public class LoginTests extends TestBase {
                     .formParam("Email", login)
                     .formParam("Password", password)
                     .when()
-                    .post("/login")
+                    .post(BASE_URI + "/login")
                     .then()
                     .statusCode(302)
                     .extract()
@@ -65,7 +64,7 @@ public class LoginTests extends TestBase {
                     .spec(request)
                     .cookie("NOPCOMMERCE.AUTH", authorizationCookie)
                     .when()
-                    .get("")
+                    .get(BASE_URI)
                     .then()
                     .spec(responseSpec)
                     .body("html.head.title", is("Demo Web Shop"))
@@ -94,7 +93,7 @@ public class LoginTests extends TestBase {
                         .spec(request)
                         .formParam("Password", password)
                         .when()
-                        .post("/login")
+                        .post(BASE_URI + "/login")
                         .then()
                         .spec(responseSpec)
                         .extract()
@@ -122,7 +121,7 @@ public class LoginTests extends TestBase {
                         .spec(request)
                         .formParam("Email", login)
                         .when()
-                        .post("/login")
+                        .post(BASE_URI + "/login")
                         .then()
                         .spec(responseSpec)
                         .extract()
@@ -150,7 +149,7 @@ public class LoginTests extends TestBase {
                 given()
                         .spec(request)
                         .when()
-                        .post("/login")
+                        .post(BASE_URI + "/login")
                         .then()
                         .spec(responseSpec)
                         .extract()
