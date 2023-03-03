@@ -13,8 +13,9 @@ repositories {
 def
         junitVersion = "5.9.2",
         selenideVersion = "6.11.1",
+        restAssured = "5.3.0",
         allureVersion = "2.19.0",
-        slf4jVersion = '2.0.6',
+        slf4jVersion = "2.0.6",
         lombokVersion = "1.18.24"
 
 allure {
@@ -38,10 +39,10 @@ tasks.withType(JavaCompile) {
 dependencies {
     testImplementation(
             "org.slf4j:slf4j-simple:$slf4jVersion"
-            ,"io.rest-assured:rest-assured:5.3.0"
-            ,"io.rest-assured:rest-assured-common:5.0.1"
-            ,"io.rest-assured:json-path:5.0.1"
-            ,"io.rest-assured:xml-path:5.0.1"
+            ,"io.rest-assured:rest-assured:$restAssured"
+            ,"io.rest-assured:rest-assured-common:$restAssured"
+            ,"io.rest-assured:json-path:$restAssured"
+            ,"io.rest-assured:xml-path:$restAssured"
             ,"org.junit.jupiter:junit-jupiter:$junitVersion"
             ,"org.assertj:assertj-core:3.11.1"
             ,"org.hamcrest:hamcrest-all:1.3"

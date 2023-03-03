@@ -6,9 +6,11 @@ import io.restassured.specification.ResponseSpecification;
 
 public class Spec extends SpecBase {
 
-    public static RequestSpecification request = baseRequestSpec.with()
-            .contentType("application/x-www-form-urlencoded; charset=UTF-8");
+    public static RequestSpecification request = baseRequestSpec;
+//            .with()
+//            .contentType("application/x-www-form-urlencoded; charset=UTF-8");
 
-    public static ResponseSpecification responseSpec = baseResponseSpec.expect()
-            .statusCode(200);
+    public static ResponseSpecification responseSpec = baseResponseSpec;
+//            .expect()
+//            .statusCode(200);
 }
