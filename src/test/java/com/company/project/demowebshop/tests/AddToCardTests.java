@@ -3,9 +3,9 @@ package com.company.project.demowebshop.tests;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 
+import static com.company.project.specs.SpecBase.baseRequestSpec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
-import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check add to card on https://demowebshop.tricentis.com")
@@ -21,7 +21,7 @@ public class AddToCardTests extends TestBase {
     void addGiftCardToCardAnonymTest() {
 
         given()
-                .spec(request)
+                .spec(baseRequestSpec)
                 .formParam("giftcard_1.RecipientName", firstName)
                 .formParam("giftcard_1.RecipientEmail", email)
                 .formParam("giftcard_1.SenderName", firstName)

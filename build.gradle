@@ -13,7 +13,7 @@ repositories {
 def
         junitVersion = "5.9.2",
         selenideVersion = "6.11.1",
-        restAssured = "5.3.0",
+        restAssured = "5.2.0",
         allureVersion = "2.19.0",
         slf4jVersion = "2.0.6",
         lombokVersion = "1.18.24"

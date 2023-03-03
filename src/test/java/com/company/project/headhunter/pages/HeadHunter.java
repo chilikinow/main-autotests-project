@@ -37,7 +37,7 @@ public class HeadHunter {
     @Step("Set QA profile")
     public HeadHunter setQaProfile() {
 
-        $(".bloko-tree-selector__items").find(byText("Тестировщик")).click();
+        $(".bloko-tree-selector__items").scrollTo().find(byText("Тестировщик")).click();
         submitButton.click();
 
         return this;

@@ -7,16 +7,15 @@ import org.aeonbits.owner.ConfigFactory;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.*;
-
 import java.util.Objects;
 
 import static com.company.project.helpers.CustomApiListener.withCustomTemplates;
+import static com.company.project.specs.SpecBase.baseRequestSpec;
+import static com.company.project.specs.SpecBase.baseResponseSpec;
 import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.*;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
-import static com.company.project.demowebshop.specs.Spec.*;
 
 @Tag("demowebshop")
 @DisplayName("check login on https://demowebshop.tricentis.com")
@@ -46,7 +45,7 @@ public class LoginTests extends TestBase {
         step("fill login form and get request to login/Get authorization cookie", () -> {
 
             authorizationCookie = given()
-                    .spec(request)
+                    .spec(baseRequestSpec)
                     .filter(withCustomTemplates())
                     .formParam("Email", login)
                     .formParam("Password", password)
@@ -61,12 +60,13 @@ public class LoginTests extends TestBase {
         step("check correct redirect after login", () -> {
 
             Response response = given()
-                    .spec(request)
+                    .spec(baseRequestSpec)
                     .cookie("NOPCOMMERCE.AUTH", authorizationCookie)
                     .when()
                     .get(BASE_URI)
                     .then()
-                    .spec(responseSpec)
+                    .spec(baseResponseSpec)
+                    .statusCode(200)
                     .body("html.head.title", is("Demo Web Shop"))
                     .extract()
                     .response();
@@ -90,12 +90,13 @@ public class LoginTests extends TestBase {
 
         Response response =
                 given()
-                        .spec(request)
+                        .spec(baseRequestSpec)
                         .formParam("Password", password)
                         .when()
                         .post(BASE_URI + "/login")
                         .then()
-                        .spec(responseSpec)
+                        .spec(baseResponseSpec)
+                        .statusCode(200)
                         .extract()
                         .response();
 
@@ -118,12 +119,13 @@ public class LoginTests extends TestBase {
 
         Response response =
                 given()
-                        .spec(request)
+                        .spec(baseRequestSpec)
                         .formParam("Email", login)
                         .when()
                         .post(BASE_URI + "/login")
                         .then()
-                        .spec(responseSpec)
+                        .spec(baseResponseSpec)
+                        .statusCode(200)
                         .extract()
                         .response();
 
@@ -147,11 +149,12 @@ public class LoginTests extends TestBase {
 
         Response response =
                 given()
-                        .spec(request)
+                        .spec(baseRequestSpec)
                         .when()
                         .post(BASE_URI + "/login")
                         .then()
-                        .spec(responseSpec)
+                        .spec(baseResponseSpec)
+                        .statusCode(200)
                         .extract()
                         .response();
 

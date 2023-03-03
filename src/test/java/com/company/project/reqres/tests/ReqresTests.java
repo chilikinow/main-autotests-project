@@ -2,6 +2,7 @@ package com.company.project.reqres.tests;
 
 import com.company.project.reqres.models.*;
 import io.qameta.allure.*;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
