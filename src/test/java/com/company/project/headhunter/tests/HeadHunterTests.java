@@ -45,7 +45,7 @@ public class HeadHunterTests extends UiTestBase {
 
         step("check checked inputs in result", () -> {
 
-            $(".search-submit-wrapper").find(byText("Найти")).click();
+            $(".search-submit-wrapper").scrollTo().find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
             employmentFindDiv.find(byText("Неполный день")).ancestor("label")
