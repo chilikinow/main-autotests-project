@@ -178,7 +178,7 @@ public class HeadHunterTests extends UiTestBase {
     @Story("JIRAPROJECT-22000")
     @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
-    @ValueSource(strings = {"Selenide", "Java"})
+    @ValueSource(strings = {"Selenide", "Java", "Gradle"})
     @ParameterizedTest(name = "check headers parameter {arguments}")
     void headersParameterTest(String arg) {
 
