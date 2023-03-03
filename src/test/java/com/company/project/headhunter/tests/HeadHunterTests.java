@@ -41,11 +41,11 @@ public class HeadHunterTests extends UiTestBase {
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
-                .setPartTimeEmployment();
+                .setPartTimeEmployment()
+                .clickToFind();
 
         step("check checked inputs in result", () -> {
 
-            $(".search-submit-wrapper").scrollTo().find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
             employmentFindDiv.find(byText("Неполный день")).ancestor("label")
@@ -83,11 +83,11 @@ public class HeadHunterTests extends UiTestBase {
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
-                .setFullTimeEmployment();
+                .setFullTimeEmployment()
+                .clickToFind();
 
         step("check checked inputs in result", () -> {
 
-            $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
             employmentFindDiv.find(byText("Москва")).ancestor("label")
@@ -116,12 +116,11 @@ public class HeadHunterTests extends UiTestBase {
                 .setQaProfile()
                 .setRemote()
                 .setFullTimeEmployment()
-                .setRegion("Москва");
-
+                .setRegion("Москва")
+                .clickToFind();
 
         step("check checked inputs in result", () -> {
 
-            $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Найден"));
 
             employmentFindDiv.find(byText("Москва")).ancestor("label")
@@ -151,11 +150,11 @@ public class HeadHunterTests extends UiTestBase {
                 .setRemote()
                 .setRegion("Москва")
                 .setTechToHeader("Selenide")
-                .setNullExperience();
+                .setNullExperience()
+                .clickToFind();
 
         step("check checked inputs in result", () -> {
 
-            $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text("Selenide"));
 
             employmentFindDiv.find(byText("Москва")).ancestor("label")
@@ -184,11 +183,11 @@ public class HeadHunterTests extends UiTestBase {
     void headersParameterTest(String arg) {
 
         new HeadHunter().openAdvancedSearchPage()
-                .setTechToHeader(arg);
+                .setTechToHeader(arg)
+                .clickToFind();
 
         step("check headers parameter in result", () -> {
 
-            $(".search-submit-wrapper").find(byText("Найти")).click();
             $(".bloko-header-section-3").shouldHave(text(arg));
 
         });

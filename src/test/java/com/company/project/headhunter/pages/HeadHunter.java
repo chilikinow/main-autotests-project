@@ -27,9 +27,9 @@ public class HeadHunter {
     @Step("Set IT category")
     public HeadHunter setItCategory() {
 
-        searchingForm.find(byText("Указать специализации")).click();
+        searchingForm.find(byText("Указать специализации")).scrollTo().click();
         $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
-                .ancestor("div").$(".bloko-tree-selector-item-spacer").click();
+                .ancestor("div").$(".bloko-tree-selector-item-spacer").scrollTo().click();
 
         return this;
     }
@@ -37,8 +37,8 @@ public class HeadHunter {
     @Step("Set QA profile")
     public HeadHunter setQaProfile() {
 
-        $(".bloko-tree-selector__items").scrollTo().find(byText("Тестировщик")).click();
-        submitButton.click();
+        $(".bloko-tree-selector__items").find(byText("Тестировщик")).scrollTo().click();
+        submitButton.scrollTo().click();
 
         return this;
     }
@@ -55,9 +55,9 @@ public class HeadHunter {
     public HeadHunter setPartTimeEmployment() {
 
         searchingForm.find(byText("Неполный день")).scrollTo().click();
-        searchingForm.find(byText("От 4 часов в день")).click();
-        searchingForm.find(byText("По выходным")).click();
-        searchingForm.find(byText("По вечерам")).click();
+        searchingForm.find(byText("От 4 часов в день")).scrollTo().click();
+        searchingForm.find(byText("По выходным")).scrollTo().click();
+        searchingForm.find(byText("По вечерам")).scrollTo().click();
 
         return this;
     }
@@ -66,7 +66,7 @@ public class HeadHunter {
     public HeadHunter setFullTimeEmployment() {
 
         searchingForm.find(byText("Полный день")).scrollTo().click();
-        searchingForm.find(byText("Гибкий график")).click();
+        searchingForm.find(byText("Гибкий график")).scrollTo().click();
 
         return this;
     }
@@ -92,6 +92,16 @@ public class HeadHunter {
     public HeadHunter setNullExperience() {
 
         searchingForm.find(byText("Нет опыта")).scrollTo().click();
+
+        return this;
+    }
+
+
+
+    @Step("Click tp find")
+    public HeadHunter clickToFind() {
+
+        $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
 
         return this;
     }
