@@ -18,16 +18,10 @@ import static org.hamcrest.Matchers.hasItem;
 @Tag("reqres")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @DisplayName("check api https://reqres.in")
-public class ReqresTests{
+public class ReqresTests extends TestBase{
 
     public static final String USERS_ENDPOINT = "/users/";
     public static final String UNKNOWN_ENDPOINT = "/unknown/";
-
-    @BeforeAll
-    static void beforeAll() {
-        baseURI = "https://reqres.in";
-        basePath = "/api";
-    }
 
     @ValueSource(ints = {1,2,3})
     @ParameterizedTest(name = "check all user attributes not null on page: {arguments}")
@@ -41,7 +35,7 @@ public class ReqresTests{
                 .spec(baseRequestSpec)
                 .queryParam("page", pageNumber)
                 .when()
-                .get(USERS_ENDPOINT)
+                .get(BASE_URI + USERS_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -83,7 +77,7 @@ public class ReqresTests{
         User user = given()
                 .spec(baseRequestSpec)
                 .when()
-                .get(USERS_ENDPOINT + id)
+                .get(BASE_URI + USERS_ENDPOINT + id)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -119,7 +113,7 @@ public class ReqresTests{
         given()
                 .spec(baseRequestSpec)
                 .when()
-                .get(USERS_ENDPOINT + id)
+                .get(BASE_URI + USERS_ENDPOINT + id)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(404);
@@ -136,7 +130,7 @@ public class ReqresTests{
         List<Resource> resourcesList = given()
                 .spec(baseRequestSpec)
                 .when()
-                .get(UNKNOWN_ENDPOINT)
+                .get(BASE_URI + UNKNOWN_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(200)
@@ -176,7 +170,7 @@ public class ReqresTests{
                 .spec(baseRequestSpec)
                 .body(user)
                 .when()
-                .post(USERS_ENDPOINT)
+                .post(BASE_URI + USERS_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .statusCode(201);
@@ -192,7 +186,7 @@ public class ReqresTests{
         given()
                 .spec(baseRequestSpec)
                 .when()
-                .get(USERS_ENDPOINT)
+                .get(BASE_URI + USERS_ENDPOINT)
                 .then()
                 .spec(baseResponseSpec)
                 .body("data.findAll{it.email =~/.*?@reqres.in/}.email.flatten()",
