@@ -5,8 +5,8 @@ import com.company.project.demowebshop.tests.TestBase;
 import io.restassured.response.Response;
 
 import static com.company.project.demowebshop.tests.RegisterTests.client;
-import static com.company.project.demowebshop.specs.Spec.responseSpec;
 import static com.company.project.demowebshop.tests.RegisterTests.requestVerificationToken;
+import static com.company.project.specs.SpecBase.baseResponseSpec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
@@ -47,7 +47,7 @@ public class RegisterClient extends TestBase{
                 .get(BASE_URI + "/registerresult/1")
                 .then()
                 .statusCode(200)
-                .spec(responseSpec)
+                .spec(baseResponseSpec)
                 .body("html.head.title", is("Demo Web Shop. Register"))
                 .extract()
                 .response();
