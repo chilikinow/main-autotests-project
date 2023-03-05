@@ -17,8 +17,11 @@ import static com.company.project.headhunter.pages.HeadHunter.*;
 import static io.qameta.allure.Allure.step;
 
 @Slf4j
-@Tag("headhunter")
-@DisplayName("check advanced search page: https://hh.ru/search/vacancy/advanced")
+@Feature("JIRAPROJECT-22010 - add advanced search page")
+@Story("JIRAPROJECT-22000 - https://hh.ru")
+@Owner("chilikinow@gmail.com")
+@Tags({@Tag("headhunter"),@Tag("ui")})
+@DisplayName("check advanced search page")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class HeadHunterTests extends UiTestBase {
 
@@ -27,14 +30,12 @@ public class HeadHunterTests extends UiTestBase {
 
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://hh.ru";
+
     }
 
-    @Feature("JIRAPROJECT-22010")
-    @Story("JIRAPROJECT-22000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("part-time QA manual search test")
     @Test
+    @DisplayName("part-time QA manual search test")
+    @Severity(SeverityLevel.NORMAL)
     void createPartTimeQASearchTest() {
 
         new HeadHunter().openAdvancedSearchPage()
@@ -71,12 +72,9 @@ public class HeadHunterTests extends UiTestBase {
         });
     }
 
-    @Feature("JIRAPROJECT-22010")
-    @Story("JIRAPROJECT-22000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("full-time QA manual search test")
     @Test
+    @DisplayName("full-time QA manual search test")
+    @Severity(SeverityLevel.NORMAL)
     void createFullTimeQASearchTest() {
 
         new HeadHunter().openAdvancedSearchPage()
@@ -103,12 +101,9 @@ public class HeadHunterTests extends UiTestBase {
         });
     }
 
-    @Feature("JIRAPROJECT-22013")
-    @Story("JIRAPROJECT-22000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("temporary QA manual search test")
     @Test
+    @DisplayName("temporary QA manual search test")
+    @Severity(SeverityLevel.NORMAL)
     void createTemporaryJobQASearchTest() {
 
         new HeadHunter().openAdvancedSearchPage()
@@ -136,12 +131,9 @@ public class HeadHunterTests extends UiTestBase {
         });
     }
 
-    @Feature("JIRAPROJECT-22013")
-    @Story("JIRAPROJECT-22000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("selenide from header search test")
     @Test
+    @DisplayName("selenide from header search test")
+    @Severity(SeverityLevel.NORMAL)
     void createSelenideFromSearchHeaderTest() {
 
         new HeadHunter().openAdvancedSearchPage()
@@ -174,12 +166,9 @@ public class HeadHunterTests extends UiTestBase {
         });
     }
 
-    @Feature("JIRAPROJECT-22015")
-    @Story("JIRAPROJECT-22000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
     @ValueSource(strings = {"Selenide", "Java", "Gradle"})
     @ParameterizedTest(name = "check headers parameter {arguments}")
+    @Severity(SeverityLevel.NORMAL)
     void headersParameterTest(String arg) {
 
         new HeadHunter().openAdvancedSearchPage()

@@ -16,8 +16,11 @@ import static io.qameta.allure.Allure.step;
 import static org.openqa.selenium.By.linkText;
 
 @Slf4j
-@Tag("gitrepo")
-@DisplayName("check git repo https://github.com/eroshenkoam/allure-example")
+@Feature("JIRAPROJECT-24268 - add git repo")
+@Story("JIRAPROJECT-23076 - https://github.com/eroshenkoam/allure-example")
+@Owner("chilikinow@gmail.com")
+@Tags({@Tag("gitrepo"),@Tag("ui")})
+@DisplayName("check git repo")
 public class CurrentGitRepoTests extends UiTestBase{
 
     @BeforeAll
@@ -27,9 +30,6 @@ public class CurrentGitRepoTests extends UiTestBase{
 
     @ValueSource(ints = {76})
     @ParameterizedTest(name = "check issue exist on repo")
-    @Feature("JIRAPROJECT-24268")
-    @Story("JIRAPROJECT-23076")
-    @Owner("chilikinow@gmail.com")
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteExistOnRepo(int issueNumber) {
 

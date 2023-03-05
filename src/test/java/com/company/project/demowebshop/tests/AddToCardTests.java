@@ -11,6 +11,7 @@ import static org.hamcrest.Matchers.is;
 @Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("demowebshop"),@Tag("api")})
+@DisplayName("check add, add to card")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class AddToCardTests extends TestBase {
 
