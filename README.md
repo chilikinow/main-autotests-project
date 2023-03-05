@@ -41,6 +41,7 @@
 <a href="https://aerokube.com/selenoid/"><img src="/design/Selenoid.png" width="50" height="50"  alt="Selenoid"/></a>
 <a href="https://github.com/allure-framework/allure2"><img src="/design/Allure_Report.png" width="50" height="50"  alt="Allure"/></a>
 <a href="https://www.jenkins.io/"><img src="/design/Jenkins.png" width="50" height="50"  alt="Jenkins"/></a>
+<a href="https://www.docker.com/"><img src="/design/docker.svg" width="50" height="50"  alt="docker"/></a>
 <a href="https://telegram.org/"><img src="/design/Telegram.png" width="50" height="50"  alt="Telegram"/></a>
 </p>
 
