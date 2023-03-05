@@ -226,10 +226,8 @@ E --> A
   <img src="media\main_page_docker.png" alt="main_page_docker" width="950">
 </p>
 
-#### Используемый файл для конфигурации Docker:
+#### Используемый файл `docker-compose.yml` для конфигурации Docker:
 ```
-docker-compose.yml 
-
 version: '3.8'
 networks:
   selenoid:
