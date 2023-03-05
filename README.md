@@ -67,7 +67,7 @@
 
 # <a name="Варианты запуска">Варианты запуска</a>
 
-## Запуск тестов
+## <a name="Команды для gradle">Команды для gradle</a>
 #### Локальный запуск регрессионных тестов:
 ```
 gradle clean regression_test -Dselenoid.location=local
