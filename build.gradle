@@ -98,3 +98,15 @@ task regression_test(type: Test) {
     }
 }
 
+task api_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("api")
+    }
+}
+
+task ui_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("ui")
+    }
+
+}
