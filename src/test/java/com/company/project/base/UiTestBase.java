@@ -6,6 +6,7 @@ import com.company.project.utils.InitSelenide;
 import com.company.project.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
@@ -20,13 +21,16 @@ public class UiTestBase extends InitSelenide{
     @AfterEach
     void afterEach(){
 
-        Selenide.closeWindow();
-
         if (InitSelenide.selenideLocation != null && InitSelenide.selenideLocation.equals("remote")) {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
             Attach.addVideo();
         }
+    }
+
+    @AfterAll
+    static void afterAll() {
+        Selenide.closeWebDriver();
     }
 }
