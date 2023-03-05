@@ -11,7 +11,8 @@ import org.junit.jupiter.api.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Story("JIRAPROJECT-26014 - add registration")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("demowebshop"),@Tag("api")})
 @DisplayName("check registration")
@@ -24,7 +25,6 @@ public class RegisterTests extends TestBase {
 
     @Test
     @DisplayName("check registration")
-    @Feature("JIRAPROJECT-26014 - add registration")
     @Severity(SeverityLevel.NORMAL)
     void registerTest() {
 

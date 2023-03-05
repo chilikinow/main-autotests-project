@@ -7,7 +7,8 @@ import static com.company.project.specs.SpecBase.baseRequestSpec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Story("JIRAPROJECT-26011 - add, add to card")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("demowebshop"),@Tag("api")})
 @DisplayName("check add, add to card")
@@ -16,7 +17,6 @@ public class AddToCardTests extends TestBase {
 
     @Test
     @DisplayName("check add to card")
-    @Feature("JIRAPROJECT-26011 - add, add to card")
     @Severity(SeverityLevel.NORMAL)
     void addGiftCardToCardAnonymTest() {
 

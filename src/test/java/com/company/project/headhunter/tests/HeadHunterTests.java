@@ -17,7 +17,8 @@ import static com.company.project.headhunter.pages.HeadHunter.*;
 import static io.qameta.allure.Allure.step;
 
 @Slf4j
-@Story("JIRAPROJECT-22000 - https://hh.ru")
+@Feature("JIRAPROJECT-22000 - https://hh.ru")
+@Story("JIRAPROJECT-22010 - add advanced search page")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("headhunter"),@Tag("ui")})
 @DisplayName("check advanced search page")
@@ -34,7 +35,6 @@ public class HeadHunterTests extends UiTestBase {
 
     @Test
     @DisplayName("part-time QA manual search test")
-    @Feature("JIRAPROJECT-22010 - add advanced search page")
     @Severity(SeverityLevel.NORMAL)
     void createPartTimeQASearchTest() {
 
@@ -74,7 +74,6 @@ public class HeadHunterTests extends UiTestBase {
 
     @Test
     @DisplayName("full-time QA manual search test")
-    @Feature("JIRAPROJECT-22010 - add advanced search page")
     @Severity(SeverityLevel.NORMAL)
     void createFullTimeQASearchTest() {
 
@@ -104,7 +103,6 @@ public class HeadHunterTests extends UiTestBase {
 
     @Test
     @DisplayName("temporary QA manual search test")
-    @Feature("JIRAPROJECT-22010 - add advanced search page")
     @Severity(SeverityLevel.NORMAL)
     void createTemporaryJobQASearchTest() {
 
@@ -135,7 +133,6 @@ public class HeadHunterTests extends UiTestBase {
 
     @Test
     @DisplayName("selenide from header search test")
-    @Feature("JIRAPROJECT-22010 - add advanced search page")
     @Severity(SeverityLevel.NORMAL)
     void createSelenideFromSearchHeaderTest() {
 
@@ -171,7 +168,6 @@ public class HeadHunterTests extends UiTestBase {
 
     @ValueSource(strings = {"Selenide", "Java", "Gradle"})
     @ParameterizedTest(name = "check headers parameter {arguments}")
-    @Feature("JIRAPROJECT-22010 - add advanced search page")
     @Severity(SeverityLevel.NORMAL)
     void headersParameterTest(String arg) {
 

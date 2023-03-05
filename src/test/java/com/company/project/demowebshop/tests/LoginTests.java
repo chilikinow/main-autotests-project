@@ -17,7 +17,8 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 
-@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Story("JIRAPROJECT-26012 - add login")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("demowebshop"),@Tag("api")})
 @DisplayName("check login")
@@ -40,7 +41,6 @@ public class LoginTests extends TestBase {
 
     @Test
     @DisplayName("check login")
-    @Feature("JIRAPROJECT-26012 - add login")
     @Severity(SeverityLevel.NORMAL)
     void loginTest() {
 
@@ -84,7 +84,6 @@ public class LoginTests extends TestBase {
 
     @Test
     @DisplayName("check login without email")
-    @Feature("JIRAPROJECT-26012 - add login")
     @Severity(SeverityLevel.NORMAL)
     void loginWithOutEmailTest() {
 
@@ -111,7 +110,6 @@ public class LoginTests extends TestBase {
 
     @Test
     @DisplayName("check login without password")
-    @Feature("JIRAPROJECT-26012 - add login")
     @Severity(SeverityLevel.NORMAL)
     void loginWithOutPasswordTest() {
 
@@ -139,7 +137,6 @@ public class LoginTests extends TestBase {
 
     @Test
     @DisplayName("check login without password and login")
-    @Feature("JIRAPROJECT-26012 - add login")
     @Severity(SeverityLevel.NORMAL)
     void loginWithOutLoginAndPasswordTest() {
 
@@ -161,6 +158,5 @@ public class LoginTests extends TestBase {
                 .first()).text();
 
         assertThat(errorText).isEqualTo("No customer account found");
-
     }
 }
