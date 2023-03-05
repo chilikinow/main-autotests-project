@@ -11,12 +11,19 @@
 + [Telegram уведомления](#Telegram-уведомления)
 + [Результаты тестов в Allure Report](#Результаты-тестов-в-Allure-Report)
 + [Интеграция с Allure TestOps](#Интеграция-с-Allure-TestOps)
-+ [Видео запуска тестов](#Видео-запуска-тестов)
-+ [Локализация инфраструктуры в Docker](#Docker)
++ [Видео прохождения тестов](#Видео-прохождения-тестов)
++ [Локализация инфраструктуры в Docker](#Локализация-инфраструктуры-в-Docker)
 
 
 # <a name="Описание">Описание</a>
-Тестовый проект состоит из веб-тестов (UI) и тестов API.\
+#####Тестовый проект состоит из веб-тестов (UI) и тестов API
+
+В проекте собраты тесты для следующих сервисов:
+- [x] https://demowebshop.tricentis.com
+- [x] https://github.com
+- [x] https://hh.ru
+- [x] https://reqres.in
+
 Краткий список интересных фактов о проекте:
 - [x] `Page Object` проектирование
 - [x] Параметризованные тесты
@@ -201,10 +208,74 @@ E --> A
 
 [Вернуться к оглавлению ⬆](#Содержание)
 
-# <a>Видео запуска тестов</a>
+# <a>Видео прохождения тестов</a>
 
 <p align="center">
   <img src="media\video.gif" alt="video">
 </p>
+
+[Вернуться к оглавлению ⬆](#Содержание)
+
+# <a>Локализация инфраструктуры в Docker</a>
+
+Для выполнения авто тестов в случаях отсутствия доступа к внешней инфраструктуре, на локальном компьютере, 
+с помощью Docker была разврнута локальная инфраструктура, выбор использования которой, осуществляется с помощью 
+выбора `selenoid.location = local`
+
+<p align="center">
+  <img src="media\main_page_docker.png" alt="main_page_docker" width="950">
+</p>
+
+#### Используемый файл для конфигурации Docker:
+```
+docker-compose.yml 
+
+version: '3.8'
+networks:
+  selenoid:
+    external:
+      name: selenoid #docker network create selenoid
+      
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    user: root
+    volumes:
+      - "C:/services/jenkins:/var/jenkins_home"
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080
+      - 50000:50000
+    networks:
+      - selenoid
+    
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    container_name: selenoid
+    volumes:
+      - "C:/services/selenoid:/etc/selenoid"
+      - "C:/services/selenoid/video:/opt/selenoid/video"
+      - "C:/services/selenoid/logs:/opt/selenoid/logs"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=C:/services/selenoid/video
+    command: ["-conf", "/etc/selenoid/browsers.json", "-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "selenoid"]
+    ports:
+      - "4444:4444"
+    networks:
+      selenoid: null
+    
+  selenoid-ui:
+    image: "aerokube/selenoid-ui"
+    container_name: selenoid-ui
+    links:
+      - selenoid
+    ports:
+      - "8888:8080"
+    command: ["--selenoid-uri", "http://selenoid:4444"]
+    networks:
+      - selenoid           
+```
 
 [Вернуться к оглавлению ⬆](#Содержание)
