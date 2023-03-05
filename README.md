@@ -204,7 +204,7 @@ E --> A
 # <a>Видео запуска тестов</a>
 
 <p align="center">
-  <img src="media\video.mp4" alt="video">
+  <img src="media\video.gif" alt="video">
 </p>
 
 [Вернуться к оглавлению ⬆](#Содержание)
