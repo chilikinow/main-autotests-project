@@ -15,7 +15,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.hamcrest.Matchers.hasItem;
 
-@Feature("JIRAPROJECT-21011 - add api interface")
 @Story("JIRAPROJECT-21000 - https://reqres.in")
 @Owner("chilikinow@gmail.com")
 @Tags({@Tag("reqres"),@Tag("api")})
@@ -28,6 +27,7 @@ public class ReqresTests extends TestBase{
 
     @ValueSource(ints = {1,2,3})
     @ParameterizedTest(name = "check all user attributes not null on page: {arguments}")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     void checkAllUserAttributesNotNullTest(int pageNumber) {
 
@@ -68,6 +68,7 @@ public class ReqresTests extends TestBase{
 
     @CsvFileSource(resources = "/users.csv")
     @ParameterizedTest(name = "check definite user exist")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     void checkDefiniteUserTest(Long id, String email, String firstName, String lastName) {
 
@@ -101,6 +102,7 @@ public class ReqresTests extends TestBase{
 
     @ValueSource(ints = {997, 998, 999})
     @ParameterizedTest(name = "check user {arguments} not exist")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     void checkSingleUserNotFound(int id) {
 
@@ -115,6 +117,7 @@ public class ReqresTests extends TestBase{
 
     @CsvFileSource(resources = "/resources.csv")
     @ParameterizedTest(name = "check name {0} exist on resource page")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     void checkNameExistOnResourcePageTest(String name) {
 
@@ -138,6 +141,7 @@ public class ReqresTests extends TestBase{
     }
 
     @DisplayName("check user create successful")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     @Test
     void checkUserCreateSuccessful() {
@@ -165,6 +169,7 @@ public class ReqresTests extends TestBase{
     }
 
     @DisplayName("check email with groovy")
+    @Feature("JIRAPROJECT-21011 - add api interface")
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void checkEmailTest() {
