@@ -27,10 +27,8 @@ public class UiTestBase extends InitSelenide{
             Attach.browserConsoleLogs();
             Attach.addVideo();
         }
-    }
 
-    @AfterAll
-    static void afterAll() {
         Selenide.closeWebDriver();
     }
+
 }
