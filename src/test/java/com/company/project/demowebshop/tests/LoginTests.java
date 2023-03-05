@@ -17,8 +17,11 @@ import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.is;
 
-@Tag("demowebshop")
-@DisplayName("check login on https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-26012 - add login")
+@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Owner("chilikinow@gmail.com")
+@Tags({@Tag("demowebshop"),@Tag("api")})
+@DisplayName("check login")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class LoginTests extends TestBase {
 
@@ -29,17 +32,16 @@ public class LoginTests extends TestBase {
 
     @BeforeAll
     static void setConfig() {
+
         config = ConfigFactory.create(Authorization.class, System.getProperties());
         login = config.getLogin();
         password = config.getPass();
+
     }
 
-    @Feature("JIRAPROJECT-26012")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check login")
     @Test
+    @DisplayName("check login")
+    @Severity(SeverityLevel.NORMAL)
     void loginTest() {
 
         step("fill login form and get request to login/Get authorization cookie", () -> {
@@ -80,12 +82,9 @@ public class LoginTests extends TestBase {
         });
     }
 
-    @Feature("JIRAPROJECT-26012")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check login without email")
     @Test
+    @DisplayName("check login without email")
+    @Severity(SeverityLevel.NORMAL)
     void loginWithOutEmailTest() {
 
         Response response =
@@ -109,12 +108,9 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Feature("JIRAPROJECT-26012")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check login without password")
     @Test
+    @DisplayName("check login without password")
+    @Severity(SeverityLevel.NORMAL)
     void loginWithOutPasswordTest() {
 
         Response response =
@@ -139,12 +135,9 @@ public class LoginTests extends TestBase {
 
     }
 
-    @Feature("JIRAPROJECT-26012")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check login without password and login")
     @Test
+    @DisplayName("check login without password and login")
+    @Severity(SeverityLevel.NORMAL)
     void loginWithOutLoginAndPasswordTest() {
 
         Response response =

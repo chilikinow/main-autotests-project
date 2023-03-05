@@ -11,8 +11,11 @@ import org.junit.jupiter.api.*;
 import static io.qameta.allure.Allure.step;
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Tag("demowebshop")
-@DisplayName("check registration on https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-26014 - add registration")
+@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Owner("chilikinow@gmail.com")
+@Tags({@Tag("demowebshop"),@Tag("api")})
+@DisplayName("check registration")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class RegisterTests extends TestBase {
 
@@ -20,12 +23,9 @@ public class RegisterTests extends TestBase {
     public static final RegisterClient client = new RegisterClient();
     User user = null;
 
-    @Feature("JIRAPROJECT-26014")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check registration")
     @Test
+    @DisplayName("check registration")
+    @Severity(SeverityLevel.NORMAL)
     void registerTest() {
 
         step("set data for user model", () -> {

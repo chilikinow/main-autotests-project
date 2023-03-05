@@ -7,17 +7,16 @@ import static com.company.project.specs.SpecBase.baseRequestSpec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.is;
 
-@Tag("demowebshop")
-@DisplayName("check add to card on https://demowebshop.tricentis.com")
+@Feature("JIRAPROJECT-26011 - add, add to card")
+@Story("JIRAPROJECT-28000 - https://demowebshop.tricentis.com")
+@Owner("chilikinow@gmail.com")
+@Tags({@Tag("demowebshop"),@Tag("api")})
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class AddToCardTests extends TestBase {
 
-    @Feature("JIRAPROJECT-26011")
-    @Story("JIRAPROJECT-28000")
-    @Owner("chilikinow@gmail.com")
-    @Severity(SeverityLevel.NORMAL)
-    @DisplayName("check add to card")
     @Test
+    @DisplayName("check add to card")
+    @Severity(SeverityLevel.NORMAL)
     void addGiftCardToCardAnonymTest() {
 
         given()
