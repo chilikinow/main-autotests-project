@@ -8,11 +8,11 @@ import static com.codeborne.selenide.FileDownloadMode.FOLDER;
 
 public class InitSelenoid {
 
-    public static String selenideLocation;
+    public static String locationselenoid;
 
     static {
 
-        selenideLocation = System.getProperty("selenoid.location");
+        locationselenoid = System.getProperty("selenoid.location");
 
         ConfigSelenoid configSelenoid = ConfigFactory.create(ConfigSelenoid.class, System.getProperties());
         Configuration.remote = configSelenoid.getSelenoidUrl();
@@ -25,7 +25,7 @@ public class InitSelenoid {
 
         Configuration.fileDownload = FOLDER;
 
-        if (selenideLocation != null && selenideLocation.equals("remote")) {
+        if (locationselenoid != null && locationselenoid.equals("remote")) {
 
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setCapability("enableVNC", true);
