@@ -5,10 +5,10 @@ import static org.aeonbits.owner.Config.*;
 
 @Sources({
 
-        "file:src/test/resources/config/${selenide.location}.properties",
-        "classpath:config/${selenide.location}.properties"
+        "file:src/test/resources/config/${selenoid.location}.properties",
+        "classpath:config/${selenoid.location}.properties"
 })
-public interface SelenideConfig extends Config {
+public interface ConfigSelenoid extends Config {
 
     @Key("selenoid.url")
     String getSelenoidUrl();

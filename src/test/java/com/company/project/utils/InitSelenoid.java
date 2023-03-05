@@ -6,22 +6,22 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.FileDownloadMode.FOLDER;
 
-public class InitSelenide {
+public class InitSelenoid {
 
     public static String selenideLocation;
 
     static {
 
-        selenideLocation = System.getProperty("selenide.location");
+        selenideLocation = System.getProperty("selenoid.location");
 
-        SelenideConfig selenideConfig = ConfigFactory.create(SelenideConfig.class, System.getProperties());
-        Configuration.remote = selenideConfig.getSelenoidUrl();
-        Configuration.browser = selenideConfig.getBrowserName();
-        Configuration.browserVersion = selenideConfig.getBrowserVersion();
-        Configuration.browserSize = selenideConfig.getBrowserSize();
-        Configuration.timeout = selenideConfig.getBrowserTimeout();
-        Configuration.headless = selenideConfig.isBrowserHeadless();
-        Configuration.holdBrowserOpen = selenideConfig.isHoldBrowserOpen();
+        ConfigSelenoid configSelenoid = ConfigFactory.create(ConfigSelenoid.class, System.getProperties());
+        Configuration.remote = configSelenoid.getSelenoidUrl();
+        Configuration.browser = configSelenoid.getBrowserName();
+        Configuration.browserVersion = configSelenoid.getBrowserVersion();
+        Configuration.browserSize = configSelenoid.getBrowserSize();
+        Configuration.timeout = configSelenoid.getBrowserTimeout();
+        Configuration.headless = configSelenoid.isBrowserHeadless();
+        Configuration.holdBrowserOpen = configSelenoid.isHoldBrowserOpen();
 
         Configuration.fileDownload = FOLDER;
 
