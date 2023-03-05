@@ -90,13 +90,13 @@ src/test/resources/config/${selenoid.location}.properties
 Допустимые комбинации:
 ```mermaid
 graph LR
-A[selenoid.location] --> O[task]
-O --> B[remote]
+A[selenoid.location] --> O[remote]
+O --> B[task]
 B --> C[regression_test]
 B --> D[api_test]
 B --> E[ui_test]
-A --> L[task]
-L[task] --> F[local]
+A --> L[local]
+L --> F[task]
 F --> G[regression_test]
 F --> H[api_test]
 F --> I[ui_test]
