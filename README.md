@@ -47,6 +47,7 @@
 <a href="https://selenide.org/"><img src="/design/Selenide.png" width="50" height="50"  alt="Selenide"/></a>
 <a href="https://aerokube.com/selenoid/"><img src="/design/Selenoid.png" width="50" height="50"  alt="Selenoid"/></a>
 <a href="https://github.com/allure-framework/allure2"><img src="/design/Allure_Report.png" width="50" height="50"  alt="Allure"/></a>
+<a href="https://github.com/xeleron88/dostavka.magnit.ru_UI_API_MOBILE_test/blob/master/images/icons/allure-ee-logo.svg"><img src="design\allure_test_ops_logo.svg" width="50" height="50"  alt="Allure"/></a>
 <a href="https://www.jenkins.io/"><img src="/design/Jenkins.png" width="50" height="50"  alt="Jenkins"/></a>
 <a href="https://www.docker.com/"><img src="/design/docker.svg" width="50" height="50"  alt="docker"/></a>
 <a href="https://telegram.org/"><img src="/design/Telegram.png" width="50" height="50"  alt="Telegram"/></a>
