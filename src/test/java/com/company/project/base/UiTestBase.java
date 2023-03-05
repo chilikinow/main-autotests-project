@@ -1,5 +1,6 @@
 package com.company.project.base;
 
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.company.project.utils.InitSelenide;
 import com.company.project.helpers.Attach;
@@ -18,6 +19,8 @@ public class UiTestBase extends InitSelenide{
 
     @AfterEach
     void afterEach(){
+
+        Selenide.closeWindow();
 
         if (InitSelenide.selenideLocation != null && InitSelenide.selenideLocation.equals("remote")) {
             Attach.screenshotAs("Last screenshot");
