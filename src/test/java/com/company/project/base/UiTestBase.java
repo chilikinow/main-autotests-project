@@ -20,7 +20,7 @@ public class UiTestBase extends InitSelenoid {
     @AfterEach
     void afterEach(){
 
-        if (InitSelenoid.locationselenoid != null && InitSelenoid.locationselenoid.equals("remote")) {
+        if (InitSelenoid.locationSelenoid != null && InitSelenoid.locationSelenoid.equals("remote")) {
             Attach.screenshotAs("Last screenshot");
             Attach.pageSource();
             Attach.browserConsoleLogs();
