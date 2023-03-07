@@ -1,8 +1,8 @@
 package com.company.project.headhunter.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.SelenideElement;
 import com.company.project.base.UiTestBase;
-import com.company.project.headhunter.pages.HeadHunter;
 import io.qameta.allure.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Condition.checked;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static com.company.project.headhunter.pages.HeadHunter.*;
 import static io.qameta.allure.Allure.step;
 
 @Slf4j
@@ -24,6 +23,14 @@ import static io.qameta.allure.Allure.step;
 @DisplayName("check advanced search page")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 public class HeadHunterTests extends UiTestBase {
+
+    String advancedSearchPageUrl = "/search/vacancy/advanced";
+    private static SelenideElement searchingForm = $("[data-qa='advanced-vacancy-search__form']");
+    public static SelenideElement submitButton = $(".bloko-modal-footer").find(byText("Выбрать"));
+    public static SelenideElement employmentFindDiv = $(".novafilters");
+    private static String region = "Москва";
+    private static String tech = "Selenide";
+
 
     @BeforeAll
     static void beforeAll() {
@@ -38,12 +45,47 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createPartTimeQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
-                .setItCategory()
-                .setQaProfile()
-                .setRemote()
-                .setPartTimeEmployment()
-                .clickToFind();
+        step("Open Advanced Search page", () -> {
+
+            open(advancedSearchPageUrl);
+
+        });
+
+        step("Set IT category", () -> {
+
+            searchingForm.find(byText("Указать специализации")).scrollTo().click();
+            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
+                    .ancestor("div").$(".bloko-tree-selector-item-spacer").scrollTo().click();
+
+        });
+
+        step("Set QA profile", () -> {
+
+            $(".bloko-tree-selector__items").find(byText("Тестировщик")).scrollTo().click();
+            submitButton.scrollTo().click();
+
+        });
+
+        step("Set remote", () -> {
+
+            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
+
+        });
+
+        step("Set part-time employment", () -> {
+
+            searchingForm.find(byText("Неполный день")).scrollTo().click();
+            searchingForm.find(byText("От 4 часов в день")).scrollTo().click();
+            searchingForm.find(byText("По выходным")).scrollTo().click();
+            searchingForm.find(byText("По вечерам")).scrollTo().click();
+
+        });
+
+        step("Click tp find", () -> {
+
+            $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
+
+        });
 
         step("check checked inputs in result", () -> {
 
@@ -77,12 +119,45 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createFullTimeQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
-                .setItCategory()
-                .setQaProfile()
-                .setRemote()
-                .setFullTimeEmployment()
-                .clickToFind();
+        step("Open Advanced Search page", () -> {
+
+            open(advancedSearchPageUrl);
+
+        });
+
+        step("Set IT category", () -> {
+
+            searchingForm.find(byText("Указать специализации")).scrollTo().click();
+            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
+                    .ancestor("div").$(".bloko-tree-selector-item-spacer").scrollTo().click();
+
+        });
+
+        step("Set QA profile", () -> {
+
+            $(".bloko-tree-selector__items").find(byText("Тестировщик")).scrollTo().click();
+            submitButton.scrollTo().click();
+
+        });
+
+        step("Set remote", () -> {
+
+            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
+
+        });
+
+        step("Set full-time employment", () -> {
+
+            searchingForm.find(byText("Полный день")).scrollTo().click();
+            searchingForm.find(byText("Гибкий график")).scrollTo().click();
+
+        });
+
+        step("Click tp find", () -> {
+
+            $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
+
+        });
 
         step("check checked inputs in result", () -> {
 
@@ -106,13 +181,52 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createTemporaryJobQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
-                .setItCategory()
-                .setQaProfile()
-                .setRemote()
-                .setFullTimeEmployment()
-                .setRegion("Москва")
-                .clickToFind();
+        step("Open Advanced Search page", () -> {
+
+            open(advancedSearchPageUrl);
+
+        });
+
+        step("Set IT category", () -> {
+
+            searchingForm.find(byText("Указать специализации")).scrollTo().click();
+            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
+                    .ancestor("div").$(".bloko-tree-selector-item-spacer").scrollTo().click();
+
+        });
+
+        step("Set QA profile", () -> {
+
+            $(".bloko-tree-selector__items").find(byText("Тестировщик")).scrollTo().click();
+            submitButton.scrollTo().click();
+
+        });
+
+        step("Set remote", () -> {
+
+            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
+
+        });
+
+        step("Set full-time employment", () -> {
+
+            searchingForm.find(byText("Полный день")).scrollTo().click();
+            searchingForm.find(byText("Гибкий график")).scrollTo().click();
+
+        });
+
+        step("Set region", () -> {
+
+            searchingForm.find(byText(region)).ancestor(".bloko-tag-list")
+                    .sibling(0).$(".bloko-input-text").val(region);
+
+        });
+
+        step("Click tp find", () -> {
+
+            $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
+
+        });
 
         step("check checked inputs in result", () -> {
 
@@ -136,14 +250,57 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createSelenideFromSearchHeaderTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
-                .setItCategory()
-                .setQaProfile()
-                .setRemote()
-                .setRegion("Москва")
-                .setTechToHeader("Selenide")
-                .setNullExperience()
-                .clickToFind();
+        step("Open Advanced Search page", () -> {
+
+            open(advancedSearchPageUrl);
+
+        });
+
+        step("Set IT category", () -> {
+
+            searchingForm.find(byText("Указать специализации")).scrollTo().click();
+            $(".bloko-tree-selector-popup-content").find(byText("Информационные технологии"))
+                    .ancestor("div").$(".bloko-tree-selector-item-spacer").scrollTo().click();
+
+        });
+
+        step("Set QA profile", () -> {
+
+            $(".bloko-tree-selector__items").find(byText("Тестировщик")).scrollTo().click();
+            submitButton.scrollTo().click();
+
+        });
+
+        step("Set remote", () -> {
+
+            searchingForm.find(byText("Удаленная работа")).scrollTo().click();
+
+        });
+
+        step("Set region", () -> {
+
+            searchingForm.find(byText(region)).ancestor(".bloko-tag-list")
+                    .sibling(0).$(".bloko-input-text").val(region);
+
+        });
+
+        step("Set tech to header", () -> {
+
+            searchingForm.$$(".bloko-form-row").first().$(".bloko-input-text").val(tech);
+
+        });
+
+        step("Set null experience", () -> {
+
+            searchingForm.find(byText("Нет опыта")).scrollTo().click();
+
+        });
+
+        step("Click tp find", () -> {
+
+            $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
+
+        });
 
         step("check checked inputs in result", () -> {
 
@@ -171,9 +328,23 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void headersParameterTest(String arg) {
 
-        new HeadHunter().openAdvancedSearchPage()
-                .setTechToHeader(arg)
-                .clickToFind();
+        step("Open Advanced Search page", () -> {
+
+            open(advancedSearchPageUrl);
+
+        });
+
+        step("Set tech to header", () -> {
+
+            searchingForm.$$(".bloko-form-row").first().$(".bloko-input-text").val(arg);
+
+        });
+
+        step("Click tp find", () -> {
+
+            $(".search-submit-wrapper").find(byText("Найти")).scrollTo().click();
+
+        });
 
         step("check headers parameter in result", () -> {
 
