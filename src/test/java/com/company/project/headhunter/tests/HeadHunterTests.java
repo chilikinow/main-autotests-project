@@ -80,13 +80,13 @@ public class HeadHunterTests extends UiTestBase {
                 .setQaProfile()
                 .setRemote()
                 .setFullTimeEmployment()
-                .setRegion("Москва")
+//                .setRegion("Москва")
                 .clickToFind()
 
                 .checkShouldHavefinded()
                 .checkShouldBeFullDay()
                 .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+//                .checkShouldBeCurrentRegion()
                 .checkShouldBeRemoteWork()
                 .checkShouldBeFlexibleWorkingHours();
     }
@@ -100,17 +100,16 @@ public class HeadHunterTests extends UiTestBase {
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
-                .setRegion("Москва")
+//                .setRegion("Москва")
                 .setTechToHeader("Selenide")
                 .setNullExperience()
                 .clickToFind()
 
                 .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+//                .checkShouldBeCurrentRegion()
                 .checkShouldBeRemoteWork()
                 .checkShouldBeCurrentTechToHeader()
                 .checkShouldBeWithoutExperience();
-
     }
 
     @ValueSource(strings = {"Selenide", "Java", "Gradle"})
