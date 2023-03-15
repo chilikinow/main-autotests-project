@@ -9,13 +9,6 @@ import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
-import static com.company.project.headhunter.pages.HeadHunter.*;
-import static io.qameta.allure.Allure.step;
-
 @Slf4j
 @Feature("JIRAPROJECT-22000 - https://hh.ru")
 @Story("JIRAPROJECT-22010 - add advanced search page")
@@ -30,6 +23,7 @@ public class HeadHunterTests extends UiTestBase {
 
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://hh.ru";
+        Configuration.holdBrowserOpen = true;
 
     }
 
@@ -43,33 +37,17 @@ public class HeadHunterTests extends UiTestBase {
                 .setQaProfile()
                 .setRemote()
                 .setPartTimeEmployment()
-                .clickToFind();
+                .clickToFind()
 
-        step("check checked inputs in result", () -> {
+                .checkShouldHavefinded()
+                .checkShouldBeNotFullDay()
+        .checkShouldBeQACategory()
+        .checkShouldBeCurrentRegion()
+        .checkShouldBeRemoteWork()
+        .checkShouldBeMoreFourHoure()
+        .checkShouldBeOnWeekends()
+        .checkShouldBeInTheEvenings();
 
-            $(".bloko-header-section-3").shouldHave(text("Найден"));
-
-            employmentFindDiv.find(byText("Неполный день")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("От 4 часов в день")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("По выходным")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("По вечерам")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("Москва")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("Тестировщик")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-
-            employmentFindDiv.find(byText("Удаленная работа")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-        });
     }
 
     @Test
@@ -82,23 +60,14 @@ public class HeadHunterTests extends UiTestBase {
                 .setQaProfile()
                 .setRemote()
                 .setFullTimeEmployment()
-                .clickToFind();
+                .clickToFind()
 
-        step("check checked inputs in result", () -> {
-
-            $(".bloko-header-section-3").shouldHave(text("Найден"));
-
-            employmentFindDiv.find(byText("Москва")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Тестировщик")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Полный день")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Гибкий график")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Удаленная работа")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-        });
+                .checkShouldHavefinded()
+                .checkShouldBeFullDay()
+                .checkShouldBeQACategory()
+                .checkShouldBeCurrentRegion()
+                .checkShouldBeRemoteWork()
+                .checkShouldBeFlexibleWorkingHours();
     }
 
     @Test
@@ -112,23 +81,14 @@ public class HeadHunterTests extends UiTestBase {
                 .setRemote()
                 .setFullTimeEmployment()
                 .setRegion("Москва")
-                .clickToFind();
+                .clickToFind()
 
-        step("check checked inputs in result", () -> {
-
-            $(".bloko-header-section-3").shouldHave(text("Найден"));
-
-            employmentFindDiv.find(byText("Москва")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Тестировщик")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Полный день")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Гибкий график")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Удаленная работа")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-        });
+                .checkShouldHavefinded()
+                .checkShouldBeFullDay()
+                .checkShouldBeQACategory()
+                .checkShouldBeCurrentRegion()
+                .checkShouldBeRemoteWork()
+                .checkShouldBeFlexibleWorkingHours();
     }
 
     @Test
@@ -143,27 +103,14 @@ public class HeadHunterTests extends UiTestBase {
                 .setRegion("Москва")
                 .setTechToHeader("Selenide")
                 .setNullExperience()
-                .clickToFind();
+                .clickToFind()
 
-        step("check checked inputs in result", () -> {
+                .checkShouldBeQACategory()
+                .checkShouldBeCurrentRegion()
+                .checkShouldBeRemoteWork()
+                .checkShouldBeCurrentTechToHeader()
+                .checkShouldBeWithoutExperience();
 
-            $(".bloko-header-section-3").shouldHave(text("Selenide"));
-
-            employmentFindDiv.find(byText("Москва")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Тестировщик")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Нет опыта")).ancestor("label")
-                    .$(".bloko-radio__input").shouldBe(checked);
-            employmentFindDiv.find(byText("Удаленная работа")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("В названии вакансии")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("В названии компании")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-            employmentFindDiv.find(byText("В описании вакансии")).ancestor("label")
-                    .$(".bloko-checkbox__input").shouldBe(checked);
-        });
     }
 
     @ValueSource(strings = {"Selenide", "Java", "Gradle"})
@@ -173,13 +120,10 @@ public class HeadHunterTests extends UiTestBase {
 
         new HeadHunter().openAdvancedSearchPage()
                 .setTechToHeader(arg)
-                .clickToFind();
+                .clickToFind()
 
-        step("check headers parameter in result", () -> {
+                .checkShouldBeCurrentTechToHeader();
 
-            $(".bloko-header-section-3").shouldHave(text(arg));
-
-        });
     }
 
 }

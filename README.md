@@ -69,17 +69,17 @@
 # <a name="Варианты запуска">Варианты запуска</a>
 
 ## <a name="Команды для Gradle">Команды для Gradle</a>
-#### Локальный запуск регрессионных тестов:
-```
-gradle clean regression_test -Dselenoid.location=local
-```
-#### Удаленный запуск API тестов:
+#### Запуск API тестов на удаленном selenoid:
 ```
 gradle clean api_test -Dselenoid.location=remote
 ```
-#### Удаленный запуск UI тестов в многопоточном режиме (3 потока):
+#### Запуск регрессионных тестов на удаленном selenoid:
 ```
-gradle clean ui_test -Dselenoid.location=remote -Dthreads=3
+gradle clean regression_test -Dselenoid.location=remote
+```
+#### Запуск UI тестов в многопоточном режиме (3 потока) на локальном selenoid:
+```
+gradle clean ui_test -Dselenoid.location=local -Dthreads=3
 ```
 #### Параметры сборки подключаемые с помощью библиотеки [OWNER](https://github.com/matteobaccan/owner):
 <code>selenoid.url</code> – адрес удаленного сервера, на котором будут запускаться тесты. </br>
