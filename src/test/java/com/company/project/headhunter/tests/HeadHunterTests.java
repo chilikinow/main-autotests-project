@@ -41,12 +41,12 @@ public class HeadHunterTests extends UiTestBase {
 
                 .checkShouldHavefinded()
                 .checkShouldBeNotFullDay()
-        .checkShouldBeQACategory()
-        .checkShouldBeCurrentRegion()
-        .checkShouldBeRemoteWork()
-        .checkShouldBeMoreFourHoure()
-        .checkShouldBeOnWeekends()
-        .checkShouldBeInTheEvenings();
+                .checkShouldBeQACategory()
+                .checkShouldBeCurrentRegion()
+                .checkShouldBeRemoteWork()
+                .checkShouldBeMoreFourHoure()
+                .checkShouldBeOnWeekends()
+                .checkShouldBeInTheEvenings();
 
     }
 
