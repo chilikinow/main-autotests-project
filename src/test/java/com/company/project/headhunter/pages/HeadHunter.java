@@ -153,7 +153,7 @@ public class HeadHunter {
     @Step("Check should be current region")
     public HeadHunter checkShouldBeCurrentRegion() {
 
-        employmentFindDiv.scrollTo().find(byText(this.region)).ancestor("label")
+        employmentFindDiv.find(byText(this.region)).ancestor("label")
                 .find(".bloko-checkbox__input").shouldBe(checked);
 
         return this;
