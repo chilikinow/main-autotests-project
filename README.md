@@ -20,7 +20,6 @@
 
 В проекте собраты тесты для следующих сервисов:
 - [x] https://demowebshop.tricentis.com
-- [x] https://github.com
 - [x] https://hh.ru
 - [x] https://reqres.in
 
