@@ -2,7 +2,8 @@ package com.company.project.headhunter.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.company.project.base.UiTestBase;
-import com.company.project.headhunter.pages.HeadHunter;
+import com.company.project.headhunter.pages.AdvancedSearchPage;
+import com.company.project.headhunter.pages.ResultSearchPage;
 import io.qameta.allure.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
@@ -16,7 +17,19 @@ import org.junit.jupiter.params.provider.ValueSource;
 @Tags({@Tag("headhunter"),@Tag("ui")})
 @DisplayName("check advanced search page")
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
-public class HeadHunterTests extends UiTestBase {
+public class AdvancedSearchTest extends UiTestBase {
+
+    String region;
+    String tech;
+    AdvancedSearchPage advancedSearchPage;
+    ResultSearchPage resultSearchPage;
+
+    {
+        region = "Москва";
+        tech = "Selenide";
+        advancedSearchPage = new AdvancedSearchPage();
+        resultSearchPage = new ResultSearchPage();
+    }
 
     @BeforeAll
     static void beforeAll() {
@@ -32,18 +45,18 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createPartTimeQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
+        advancedSearchPage.openAdvancedSearchPage()
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
                 .setPartTimeEmployment()
-                .setRegion("Москва")
-                .clickToFind()
+                .setRegion(region)
+                .clickToFind();
 
-                .checkShouldHavefinded()
+        resultSearchPage.checkShouldHavefinded()
                 .checkShouldBeNotFullDay()
                 .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+                .checkShouldBeCurrentRegion(region)
                 .checkShouldBeRemoteWork()
                 .checkShouldBeMoreFourHoure()
                 .checkShouldBeOnWeekends()
@@ -56,18 +69,18 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createFullTimeQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
+        advancedSearchPage.openAdvancedSearchPage()
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
                 .setFullTimeEmployment()
-                .setRegion("Москва")
-                .clickToFind()
+                .setRegion(region)
+                .clickToFind();
 
-                .checkShouldHavefinded()
+        resultSearchPage.checkShouldHavefinded()
                 .checkShouldBeFullDay()
                 .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+                .checkShouldBeCurrentRegion(region)
                 .checkShouldBeRemoteWork()
                 .checkShouldBeFlexibleWorkingHours();
     }
@@ -77,18 +90,18 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createTemporaryJobQASearchTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
+        advancedSearchPage.openAdvancedSearchPage()
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
                 .setFullTimeEmployment()
-                .setRegion("Москва")
-                .clickToFind()
+                .setRegion(region)
+                .clickToFind();
 
-                .checkShouldHavefinded()
+        resultSearchPage.checkShouldHavefinded()
                 .checkShouldBeFullDay()
                 .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+                .checkShouldBeCurrentRegion(region)
                 .checkShouldBeRemoteWork()
                 .checkShouldBeFlexibleWorkingHours();
     }
@@ -98,19 +111,19 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void createSelenideFromSearchHeaderTest() {
 
-        new HeadHunter().openAdvancedSearchPage()
+        advancedSearchPage.openAdvancedSearchPage()
                 .setItCategory()
                 .setQaProfile()
                 .setRemote()
-                .setRegion("Москва")
-                .setTechToHeader("Selenide")
+                .setRegion(region)
+                .setTechToHeader(tech)
                 .setNullExperience()
-                .clickToFind()
+                .clickToFind();
 
-                .checkShouldBeQACategory()
-                .checkShouldBeCurrentRegion()
+        resultSearchPage.checkShouldBeQACategory()
+                .checkShouldBeCurrentRegion(region)
                 .checkShouldBeRemoteWork()
-                .checkShouldBeCurrentTechToHeader()
+                .checkShouldBeCurrentTechToHeader(tech)
                 .checkShouldBeWithoutExperience();
     }
 
@@ -119,11 +132,11 @@ public class HeadHunterTests extends UiTestBase {
     @Severity(SeverityLevel.NORMAL)
     void headersParameterTest(String arg) {
 
-        new HeadHunter().openAdvancedSearchPage()
+        advancedSearchPage.openAdvancedSearchPage()
                 .setTechToHeader(arg)
-                .clickToFind()
+                .clickToFind();
 
-                .checkShouldBeCurrentTechToHeader();
+        resultSearchPage.checkShouldBeCurrentTechToHeader(arg);
 
     }
 

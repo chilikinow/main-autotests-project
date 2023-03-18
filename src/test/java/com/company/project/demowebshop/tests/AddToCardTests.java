@@ -1,5 +1,6 @@
 package com.company.project.demowebshop.tests;
 
+import com.company.project.demowebshop.data.TestData;
 import io.qameta.allure.*;
 import org.junit.jupiter.api.*;
 
@@ -20,13 +21,15 @@ public class AddToCardTests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void addGiftCardToCardAnonymTest() {
 
+        TestData testData = new TestData();
+
         given()
                 .spec(baseRequestSpec)
-                .formParam("giftcard_1.RecipientName", firstName)
-                .formParam("giftcard_1.RecipientEmail", email)
-                .formParam("giftcard_1.SenderName", firstName)
-                .formParam("giftcard_1.SenderEmail", email)
-                .formParam("giftcard_1.Message", faker.lorem().fixedString(10))
+                .formParam("giftcard_1.RecipientName", testData.getFirstName())
+                .formParam("giftcard_1.RecipientEmail", testData.getEmail())
+                .formParam("giftcard_1.SenderName", testData.getFirstName())
+                .formParam("giftcard_1.SenderEmail", testData.getEmail())
+                .formParam("giftcard_1.Message", testData.faker.lorem().fixedString(10))
                 .formParam("addtocart_1.EnteredQuantity", 1)
                 .when()
                 .post(BASE_URI + "/addproducttocart/details/1/1")

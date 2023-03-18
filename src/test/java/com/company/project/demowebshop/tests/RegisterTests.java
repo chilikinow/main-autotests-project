@@ -1,5 +1,6 @@
 package com.company.project.demowebshop.tests;
 
+import com.company.project.demowebshop.data.TestData;
 import com.company.project.demowebshop.utils.RegisterClient;
 import com.company.project.demowebshop.model.User;
 import io.qameta.allure.*;
@@ -21,23 +22,19 @@ public class RegisterTests extends TestBase {
 
     public static String requestVerificationToken;
     public static final RegisterClient client = new RegisterClient();
-    User user = null;
+    TestData testData = new TestData();
+    User user = User.builder()
+            .gender(testData.getGender())
+            .firstName(testData.getFirstName())
+            .lastName(testData.getLastName())
+            .email(testData.getEmail())
+            .password(testData.getPassword())
+            .build();
 
     @Test
     @DisplayName("check registration")
     @Severity(SeverityLevel.NORMAL)
     void registerTest() {
-
-        step("set data for user model", () -> {
-
-            user = User.builder()
-                    .gender(gender)
-                    .firstName(firstName)
-                    .lastName(lastName)
-                    .email(email)
-                    .password(password)
-                    .build();
-        });
 
         step("go to registration page/get token for new user", () -> {
 

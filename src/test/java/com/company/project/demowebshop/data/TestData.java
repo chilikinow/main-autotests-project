@@ -1,26 +1,29 @@
 package com.company.project.demowebshop.data;
 
 import com.github.javafaker.Faker;
+import lombok.Getter;
+
 import java.util.Locale;
 import java.util.Random;
 
+@Getter
 public class TestData {
 
     public static Faker faker = new Faker(new Locale("de"));
     public static Random random = new Random();
 
-    public String firstName = faker.name().firstName();
-    public String lastName = faker.name().lastName();
-    public String email = faker.internet().emailAddress();
-    public String gender = getGender();
-    public String password = faker.internet().password();
+    private String firstName = faker.name().firstName();
+    private String lastName = faker.name().lastName();
+    private String email = faker.internet().emailAddress();
+    private String gender = chooseGender();
+    private String password = faker.internet().password();
 
-    public String getGender() {
+    private String chooseGender() {
         String[] genderArray = {"M", "F"};
         return getRandomArrayItem(genderArray);
     }
 
-    public String getRandomArrayItem(String[] values) {
+    private String getRandomArrayItem(String[] values) {
         int index = random.nextInt(values.length);
         return values[index];
     }

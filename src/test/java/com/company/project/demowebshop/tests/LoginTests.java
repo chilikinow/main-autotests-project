@@ -28,10 +28,8 @@ public class LoginTests extends TestBase {
     private static Authorization config;
     private static String login;
     private static String password;
-    private String authorizationCookie;
 
-    @BeforeAll
-    static void setConfig() {
+    {
 
         config = ConfigFactory.create(Authorization.class, System.getProperties());
         login = config.getLogin();
@@ -44,9 +42,9 @@ public class LoginTests extends TestBase {
     @Severity(SeverityLevel.NORMAL)
     void loginTest() {
 
-        step("fill login form and get request to login/Get authorization cookie", () -> {
+        String authorizationCookie = step("fill login form and get request to login/Get authorization cookie", () ->
 
-            authorizationCookie = given()
+            given()
                     .spec(baseRequestSpec)
                     .filter(withCustomTemplates())
                     .formParam("Email", login)
@@ -56,8 +54,8 @@ public class LoginTests extends TestBase {
                     .then()
                     .statusCode(302)
                     .extract()
-                    .cookie("NOPCOMMERCE.AUTH");
-        });
+                    .cookie("NOPCOMMERCE.AUTH")
+        );
 
         step("check correct redirect after login", () -> {
 
