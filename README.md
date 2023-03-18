@@ -69,13 +69,13 @@
 # <a name="Варианты запуска">Варианты запуска</a>
 
 ## <a name="Команды для Gradle">Команды для Gradle</a>
-#### Запуск API тестов на удаленном selenoid:
-```
-gradle clean api_test -Dselenoid.location=remote
-```
 #### Запуск регрессионных тестов на удаленном selenoid:
 ```
 gradle clean regression_test -Dselenoid.location=remote
+```
+#### Запуск API тестов на удаленном selenoid:
+```
+gradle clean api_test -Dselenoid.location=remote
 ```
 #### Запуск UI тестов в многопоточном режиме (3 потока) на локальном selenoid:
 ```
